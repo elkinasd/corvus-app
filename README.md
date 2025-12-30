@@ -1,27 +1,54 @@
-# CorvusApp
+# Aplicación Web Corvus
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.19.
+## 🏗 Arquitectura del Proyecto
 
-## Development server
+Este proyecto está construido sobre **Angular 20** y sigue una **Arquitectura orientada a Features (Funcionalidades)**, utilizando Componentes Standalone y gestión de estado reactiva moderna.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Definición de la Estructura de Directorios
 
-## Code scaffolding
+```text
+src/app/
+├── core/                       # 🧠 CEREBRO (Singletons & Servicios Globales)
+│   ├── auth/                   # Lógica de estado de autenticación
+│   ├── models/                 # Interfaces/Tipos globales (ej. DashboardMetrics)
+│   ├── services/               # Servicios de API globales
+│   └── guards/                 # Guardianes de rutas (Protección de acceso)
+│
+├── shared/                     # 🧩 PIEZAS REUTILIZABLES (UI Tonta)
+│   ├── components/             # Kit UI Genérico (Botones, Cards, Inputs)
+│   ├── pipes/                  # Transformación de datos
+│   └── directives/             # Comportamiento visual de la UI
+│
+├── layout/                     # 🖼️ MARCOS ESTRUCTURALES (Shells)
+│   ├── main-layout/            # App principal con Sidebar y Header (Material Sidenav)
+│   ├── auth-layout/            # [Pendiente] Layout limpio para login/registro
+│   └── components/             # Componentes del layout (Sidebar, Toolbar)
+│
+└── features/                   # 🚀 LÓGICA DE NEGOCIO (Vistas Lazy Loaded)
+    ├── dashboard/              # Vista Principal / Métricas
+    ├── leads/                  # Gestión de Prospectos (CRM)
+    ├── projects/               # Gestión de Proyectos
+    └── sales/                  # Ventas
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 📏 Mejores Prácticas y Convenciones
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### 1. Layouts vs. Features
 
-## Running unit tests
+- **Layouts (`/layout`)**: Son el "marco" de la pintura. No manejan datos de negocio complejos.
+- **Features (`/features`)**: Son la "pintura". Vistas completas que se cargan dentro del `<router-outlet>` del layout.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 2. Componentes y Estado
 
-## Running end-to-end tests
+- **Standalone**: Todos los componentes son `standalone: true`.
+- **Control Flow**: Uso obligatorio de la sintaxis `@if`, `@for`, `@switch`.
+- **Signals**: Preferencia por `signal()`, `computed()` y `effect()` sobre Observables manuales para el estado de la vista.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### 3. Stack Tecnológico (Versiones Actuales)
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Framework**: Angular 20.3.15
+- **UI Lib**: Angular Material 20.2.14 + CDK
+- **Lenguaje**: TypeScript 5.9.3
+- **Estilos**: SCSS Modular
