@@ -1,0 +1,23 @@
+<mat-sidenav-container class="layout-container" [hasBackdrop]="isMobile()">
+  <mat-sidenav 
+    #sidenav
+    [mode]="isMobile() ? 'over' : 'side'" 
+    [opened]="isSidenavOpened()"
+    class="layout-sidebar"
+    (closed)="isSidenavOpened.set(false)"
+  >
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="layout-main">
+    <app-header 
+      class="layout-header" 
+      [showMenuButton]="isMobile()"
+      (toggleMenu)="toggleSidenav()"
+    ></app-header>
+    
+    <main class="layout-content">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

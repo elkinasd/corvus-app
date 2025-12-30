@@ -1,0 +1,79 @@
+<div class="row g-0 justify-content-center">
+  <div class="col-12 text-center mb-4">
+    <h2 class="fw-bold text-white mb-1">Bienvenido de nuevo</h2>
+    <p class="text-muted small">Ingresa tus credenciales para acceder</p>
+  </div>
+
+  <div class="col-12">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Email -->
+      <div class="mb-3">
+        <label class="form-label text-white small ms-1"
+          >Correo Electrónico</label
+        >
+        <mat-form-field appearance="outline" class="w-100">
+          <input
+            matInput
+            formControlName="email"
+            type="email"
+            placeholder="nombre@empresa.com"
+            autocomplete="email"
+          />
+          <mat-icon matPrefix>email</mat-icon>
+        </mat-form-field>
+        @if (loginForm.get('email')?.hasError('email') &&
+        loginForm.get('email')?.touched) {
+        <div class="text-danger small ms-1 mt-1">Correo inválido</div>
+        }
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label class="form-label text-white small ms-1">Contraseña</label>
+        <mat-form-field appearance="outline" class="w-100">
+          <input
+            matInput
+            [type]="hidePassword() ? 'password' : 'text'"
+            formControlName="password"
+            placeholder="••••••••"
+            autocomplete="current-password"
+          />
+          <mat-icon matPrefix>lock</mat-icon>
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="togglePassword($event)"
+            tabindex="-1"
+          >
+            <mat-icon>{{
+              hidePassword() ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+        </mat-form-field>
+        @if (loginForm.get('password')?.hasError('required') &&
+        loginForm.get('password')?.touched) {
+        <div class="text-danger small ms-1 mt-1">Contraseña requerida</div>
+        }
+      </div>
+
+      <!-- Forgot Password -->
+      <div class="d-flex justify-content-end mb-4">
+        <a href="#" class="text-decoration-none text-muted small hover-primary"
+          >¿Olvidaste tu contraseña?</a
+        >
+      </div>
+
+      <!-- Button -->
+      <div class="d-grid">
+        <button
+          mat-flat-button
+          class="btn-submit py-3"
+          type="submit"
+          [disabled]="loginForm.invalid || isLoading()"
+        >
+          @if (isLoading()) { Procesando... } @else { INGRESAR }
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

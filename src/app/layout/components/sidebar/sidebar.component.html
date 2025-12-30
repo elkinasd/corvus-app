@@ -1,0 +1,35 @@
+<aside class="sidebar">
+  <div class="logo-container">
+    <div class="logo-circle">C</div>
+    <div class="logo-info">
+      <span class="logo-text">CORVUS</span>
+      <span class="logo-subtext">CONSTRUCTORA</span>
+    </div>
+  </div>
+
+  <div class="menu-label">MENU PRINCIPAL</div>
+
+  <mat-nav-list class="nav-menu">
+    @for (item of menuItems; track item.route) {
+      <a 
+        mat-list-item
+        [routerLink]="item.route" 
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <mat-icon matListItemIcon class="nav-icon">{{ item.icon }}</mat-icon>
+        <span matListItemTitle class="nav-label">{{ item.label }}</span>
+      </a>
+    }
+  </mat-nav-list>
+
+  <div class="sidebar-spacer"></div>
+
+  <div class="sidebar-footer">
+    <div class="user-badge">
+      <div class="status-dot"></div>
+      <span>Sistema Online</span>
+    </div>
+    <div class="version">Corvus v1.0.0</div>
+  </div>
+</aside>

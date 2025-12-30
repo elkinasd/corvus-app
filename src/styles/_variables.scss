@@ -1,0 +1,27 @@
+// === CORVUS DESIGN TOKENS ===
+
+// 1. Primitive Colors
+$color-navy-900: #0b1120; // Fondo Profundo
+$color-navy-800: #1e293b; // Tarjetas
+$color-navy-700: #334155; // Bordes/Hover
+
+$color-cyan-500: #0ea5e9; // Primary Base
+$color-cyan-400: #38bdf8; // Primary Hover/Text
+$color-cyan-gradient: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+
+$color-white: #ffffff;
+$color-slate-400: #94a3b8; // Texto secundario
+$color-red-500: #ef4444; // Error
+
+// 2. Semantic Variables (Usa estas en los componentes)
+$bg-app: $color-navy-900;
+$bg-card: $color-navy-800;
+$bg-input: $color-navy-900; // Inputs oscuros
+
+$text-main: $color-white;
+$text-secondary: $color-slate-400;
+
+$primary-accent: $color-cyan-400;
+$primary-action: $color-cyan-gradient;
+
+$border-subtle: rgba(255, 255, 255, 0.08);

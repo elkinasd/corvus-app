@@ -1,0 +1,21 @@
+<mat-toolbar class="header-toolbar">
+  <div class="header-left">
+    @if (showMenuButton()) {
+      <button mat-icon-button (click)="onToggleMenu()" class="menu-btn">
+        <mat-icon>menu</mat-icon>
+      </button>
+    }
+    <h2 class="page-title">Bienvenido a Corvus</h2>
+  </div>
+  
+  <span class="spacer"></span>
+
+  <div class="header-right">
+    <div class="user-profile">
+      <div class="avatar">U</div>
+      @if (!showMenuButton()) {
+        <span class="username">Admin</span>
+      }
+    </div>
+  </div>
+</mat-toolbar>

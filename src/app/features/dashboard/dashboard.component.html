@@ -1,0 +1,81 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <div class="header-content">
+      <h1>Panel de Control</h1>
+      <p class="subtitle">Estado general de Corvus Constructora</p>
+    </div>
+    <div class="header-actions">
+      <span class="date-badge">28 Dic, 2025</span>
+    </div>
+  </header>
+
+  <!-- KPI Cards Grid -->
+  <div class="kpi-grid">
+    <mat-card class="kpi-card" *ngFor="let kpi of kpis">
+      <mat-card-content>
+        <div class="kpi-header">
+          <div class="icon-box" [style.background-color]="kpi.color + '20'" [style.color]="kpi.color">
+            <mat-icon>{{ kpi.icon }}</mat-icon>
+          </div>
+          <span class="trend" [class.negative]="kpi.trend < 0">
+            {{ kpi.trend > 0 ? "+" : "" }}{{ kpi.trend }}%
+            <mat-icon>{{ kpi.trend > 0 ? "trending_up" : "trending_down" }}</mat-icon>
+          </span>
+        </div>
+        <div class="kpi-body">
+          <span class="value">
+            {{ kpi.prefix }}{{ kpi.value | number : "1.0-2" }}{{ kpi.suffix }}
+          </span>
+          <span class="label">{{ kpi.label }}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="dashboard-grid">
+    <!-- Project Progress Section -->
+    <mat-card class="data-card project-card">
+      <mat-card-header>
+        <mat-card-title>Avance de Proyectos Activos</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="project-list">
+          @for (project of projects; track project.id) {
+          <div class="project-info">
+            <span class="name">{{ project.name }}</span>
+            <span class="percentage">{{ project.progress }}%</span>
+          </div>
+          <mat-progress-bar mode="determinate" [value]="project.progress"
+            [color]="project.status === 'at-risk' ? 'warn' : 'primary'">
+          </mat-progress-bar>
+          <span class="status-badge" [class]="project.status">
+            {{ project.status === "at-risk" ? "En Riesgo" : "A Tiempo" }}
+          </span>
+          }
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Recent Actions / Leads -->
+    <mat-card class="data-card leads-card">
+      <mat-card-header>
+        <mat-card-title>Últimos Leads</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="leads-list">
+          @for (lead of recentLeads; track $index) {
+          <div class="lead-item">
+            <div class="lead-avatar">{{ lead.name[0] }}</div>
+            <div class="lead-details">
+              <span class="lead-name">{{ lead.name }}</span>
+              <span class="lead-meta">{{ lead.source }} • {{ lead.date }}</span>
+            </div>
+            <mat-icon class="action-icon">chevron_right</mat-icon>
+          </div>
+          }
+        </div>
+        <button class="view-all-btn">Ver todos los prospectos</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

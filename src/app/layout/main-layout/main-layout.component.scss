@@ -1,0 +1,26 @@
+.layout-container {
+  height: 100vh;
+  width: 100vw;
+}
+
+.layout-sidebar {
+  width: 280px;
+  border: none !important;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.02);
+}
+
+.layout-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-header {
+  height: 70px;
+  display: block; // Mat-toolbar is block by default
+}
+
+.layout-content {
+  flex: 1;
+  padding: 24px;
+  background: #f8fafc;
+}

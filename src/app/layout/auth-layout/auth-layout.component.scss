@@ -1,0 +1,43 @@
+@use "../../../styles/variables" as *;
+
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  // Mover el background aquí asegura que cubra todo el componente
+  background: radial-gradient(circle at top right, #1e293b 0%, $bg-app 60%);
+  background-attachment: fixed; // Evita que el fondo se corte al scrollear en mobile
+}
+
+// === CARD STYLES ===
+.auth-card {
+  // POR DEFECTO (Mobile): Transparente, sin bordes. Más limpio.
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+
+  // EN DESKTOP (Tablet en adelante): Aparece la tarjeta
+  @media (min-width: 768px) {
+    background-color: $bg-card;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border-radius: 16px;
+  }
+}
+
+.logo-text {
+  font-family: "Inter", sans-serif;
+  letter-spacing: 2px;
+  font-weight: 800; // Más grueso
+
+  span {
+    color: $primary-accent;
+  }
+}
+
+// Ajuste para evitar la barra blanca superior:
+// Asegurar que el container no tenga márgenes que colapsen
+.container-fluid {
+  overflow-x: hidden;
+}
