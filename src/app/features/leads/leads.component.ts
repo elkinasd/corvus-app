@@ -22,8 +22,8 @@ import { Column, Lead, TimelineEvent } from '../../core/models/lead.model';
     DragDropModule,
     FormsModule,
     LeadDrawerComponent,
-    MatIconModule, // <--- Agregado
-    MatButtonModule, // <--- Agregado
+    MatIconModule,
+    MatButtonModule,
   ],
   templateUrl: './leads.component.html',
   styleUrl: './leads.component.scss',
@@ -158,14 +158,16 @@ export class LeadsComponent {
 
       // Registrar evento de movimiento automáticamente
       const lead = event.container.data[event.currentIndex];
-      const toColumnTitle =
-        event.container.element.nativeElement
-          .closest('.column')
-          ?.querySelector('h2')
-          ?.textContent?.split('(')[0]
-          .trim() || 'Nueva Columna';
 
-      this.addSystemEvent(lead, `Movido a ${toColumnTitle}`);
+      // Buscar la columna destino usando el elemento del DOM si es necesario,
+      // pero mejor buscamos en nuestra lista de columnas cuál tiene este array de leads.
+      const targetColumn = this.columns.find(
+        (c) => c.leads === event.container.data
+      );
+      if (targetColumn) {
+        lead.status = targetColumn.id as Lead['status']; // Actualizar estado del lead
+        this.addSystemEvent(lead, `Movido a ${targetColumn.title}`);
+      }
     }
   }
 

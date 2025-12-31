@@ -168,8 +168,29 @@
     top: 10px;
     bottom: 10px;
     width: 4px;
-    background: #3b82f6; // Blue 500 default
+    background: #cbd5e1; // Default fallback (Slate-300)
     border-radius: 0 4px 4px 0;
+  }
+
+  // Colores por estado
+  // Colores por estado
+  &.status-new::before {
+    background: $status-new-text;
+  }
+  &.status-contacted::before {
+    background: $status-contacted-text;
+  }
+  &.status-visit::before {
+    background: $status-visit-text;
+  }
+  &.status-proposal::before {
+    background: $status-proposal-text;
+  }
+  &.status-option::before {
+    background: $status-option-text;
+  }
+  &.status-negotiation::before {
+    background: $status-negotiation-text;
   }
 
   &:hover {
@@ -198,7 +219,7 @@
 
   .card-footer {
     display: flex;
-    justify-content: flex-end; // Valores a la derecha
+    justify-content: flex-end; 
     align-items: center;
     border-top: 1px solid #f1f5f9;
     padding-top: 0.75rem;
@@ -206,7 +227,7 @@
 
     .value {
       font-weight: 700;
-      color: #059669; // Green 600
+      color: #059669;
       font-size: 0.9rem;
       background: #ecfdf5;
       padding: 2px 8px;
@@ -222,7 +243,7 @@
   background: white;
   border-radius: 8px;
   padding: 1rem;
-  width: 280px; // Match min-width roughly
+  width: 280px; 
   z-index: 10000;
   transform: rotate(2deg);
   opacity: 0.95;

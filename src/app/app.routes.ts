@@ -56,6 +56,13 @@ export const routes: Routes = [
             (m) => m.SalesComponent
           ),
       },
+      {
+        path: 'clients',
+        loadComponent: () =>
+          import('./features/clients/clients.component').then(
+            (m) => m.ClientsComponent
+          ),
+      },
     ],
   },
 

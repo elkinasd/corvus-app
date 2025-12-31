@@ -46,7 +46,12 @@
         (cdkDropListDropped)="drop($event)"
       >
         @for (lead of column.leads; track lead.id) {
-        <div class="lead-card" cdkDrag (click)="openLeadDetails(lead)">
+        <div
+          class="lead-card"
+          [ngClass]="'status-' + lead.status"
+          cdkDrag
+          (click)="openLeadDetails(lead)"
+        >
           <div class="card-title">{{ lead.title }}</div>
           <div class="card-subtitle">{{ lead.company }}</div>
 

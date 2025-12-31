@@ -4,24 +4,76 @@
 $color-navy-900: #0b1120; // Fondo Profundo
 $color-navy-800: #1e293b; // Tarjetas
 $color-navy-700: #334155; // Bordes/Hover
+$color-navy-600: #475569;
+$color-navy-text: #172b4d; // Texto principal Light Mode
 
 $color-cyan-500: #0ea5e9; // Primary Base
 $color-cyan-400: #38bdf8; // Primary Hover/Text
 $color-cyan-gradient: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
 
 $color-white: #ffffff;
-$color-slate-400: #94a3b8; // Texto secundario
-$color-red-500: #ef4444; // Error
+$color-gray-50: #f9fafb;
+$color-gray-100: #f3f4f6;
+$color-gray-200: #e5e7eb;
+$color-gray-300: #d1d5db;
+$color-gray-400: #9ca3af;
+$color-slate-400: #94a3b8; // Texto secundario Dark
+$color-slate-500: #64748b; // Texto secundario Light
 
-// 2. Semantic Variables (Usa estas en los componentes)
+// Status Primitives
+$color-emerald-500: #10b981;
+$color-emerald-100: #d1fae5;
+$color-amber-500: #f59e0b;
+$color-amber-100: #fef3c7;
+$color-rose-500: #f43f5e;
+$color-rose-100: #ffe4e6;
+$color-violet-500: #8b5cf6;
+$color-violet-100: #ede9fe;
+$color-blue-500: #3b82f6;
+$color-blue-100: #dbeafe;
+
+// 2. Semantic Variables
+
+// --- DARK MODE (App Default) ---
 $bg-app: $color-navy-900;
 $bg-card: $color-navy-800;
-$bg-input: $color-navy-900; // Inputs oscuros
-
+$bg-input: $color-navy-900;
 $text-main: $color-white;
 $text-secondary: $color-slate-400;
 
+// --- LIGHT MODE (Panels/Drawers) ---
+$bg-panel: $color-white;
+$bg-subtle: $color-gray-50;
+$border-light: $color-gray-200;
+$text-main-light: $color-navy-text;
+$text-secondary-light: $color-slate-500;
+
+// --- ACTIONS & ACCENTS ---
 $primary-accent: $color-cyan-400;
 $primary-action: $color-cyan-gradient;
+$color-success: $color-emerald-500;
+$color-warning: $color-amber-500;
+$color-danger: $color-rose-500;
+$color-info: $color-blue-500;
 
 $border-subtle: rgba(255, 255, 255, 0.08);
+
+// --- STATUS COLORS (Map) ---
+// New / Info
+$status-new-bg: $color-blue-100;
+$status-new-text: $color-blue-500;
+// Contacted / Warning
+$status-contacted-bg: $color-amber-100;
+$status-contacted-text: $color-amber-500;
+// Visit / Violet
+$status-visit-bg: $color-violet-100;
+$status-visit-text: $color-violet-500;
+// Proposal / Pink-Rose
+$status-proposal-bg: $color-rose-100;
+$status-proposal-text: $color-rose-500;
+// Option / Emerald
+$status-option-bg: $color-emerald-100;
+$status-option-text: $color-emerald-500;
+// Negotiation / Red
+$status-negotiation-bg: #fee2e2;
+$status-negotiation-text: #ef4444;

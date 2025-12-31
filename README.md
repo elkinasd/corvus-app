@@ -52,3 +52,58 @@ src/app/
 - **UI Lib**: Angular Material 20.2.14 + CDK
 - **Lenguaje**: TypeScript 5.9.3
 - **Estilos**: SCSS Modular
+
+---
+
+## 📅 Bitácora de Desarrollo
+
+### 🚀 Inicio del Proyecto - Diciembre 2025
+
+**1. Fundamentos y Arquitectura**
+
+- Inicialización del proyecto con **Angular Standalone Components**.
+- Definición de arquitectura escalable: `core`, `shared`, `layout`, `features`.
+- Configuración de sistema de diseño y variables SCSS globales.
+
+**2. Layouts y Navegación**
+
+- **Main Layout**: Implementación de Sidebar moderna con navegación y Header minimalista.
+- **Auth Layout**: Estructura centrada para vistas de autenticación.
+
+**3. Módulo de Autenticación**
+
+- **Login**: Diseño premium con efectos de vidrio (glassmorphism/blur), validación de formularios y estética corporativa.
+
+**4. Panel de Control (Dashboard)**
+
+- Creación de tarjetas de **KPIs** con indicadores de tendencia (positiva/negativa).
+- Lista de **"Avance de Proyectos"** con barras de progreso dinámicas.
+- Sección de **"Últimos Leads"** para acceso rápido.
+
+**5. Gestión de Leads (CRM)**
+
+- **Tablero Kanban**: Implementación completa con **Angular CDK Drag & Drop**.
+- **UX/UI**:
+  - Diseño de tarjetas de cliente con indicadores visuales de estado.
+  - **Responsive Design**: El tablero se adapta a "Fit-to-Screen" en escritorio (sin scroll) y habilita desplazamiento horizontal en móviles.
+- Colores consistentes y sistema de estados ("Nuevos", "Contactados", "Visita Agendada", "Cotización").
+
+**6. Evolución a "Sales-Centric" y Base de Datos (31 Dic 2025)**
+
+**Dashboard 2.0 (Enfoque de Ventas)**
+
+- Transformación a una herramienta de gestión comercial agresiva.
+- **Pipeline Funnel Chart**: Integración de `Chart.js` para visualizar el volumen de negocio por etapa.
+- **Activity Feed**: Reemplazo de listas genéricas por un feed de "Actividades de Hoy" (Llamadas, Visitas, Correos pendientes).
+
+**Directorio de Clientes (Base de Datos Maestra)**
+
+- Creación del módulo `/features/clients` independiente de Leads.
+- **Mesa de Datos**: Vista de tabla con filtros, búsqueda y paginación (`MatTable`, `MatPaginator`).
+- **Mobile First 100%**: Transformación automática de tabla a "Tarjetas de Contacto" en dispositivos móviles, eliminando problemas de visualización horizontal.
+- **Etiquetado Inteligente**: Badges para diferenciar "Inversionistas", "Compradores", y estado "VIP".
+
+**Refinamientos UI/UX**
+
+- Unificación del lenguaje visual: Tema Oscuro/Claro consistente en Dashboard y Directorio.
+- Migración a sintaxis moderna `@for` de Angular en vistas principales.

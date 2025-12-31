@@ -11,15 +11,22 @@
 
   <!-- KPI Cards Grid -->
   <div class="kpi-grid">
-    <mat-card class="kpi-card" *ngFor="let kpi of kpis">
+    @for (kpi of kpis; track kpi.label) {
+    <mat-card class="kpi-card">
       <mat-card-content>
         <div class="kpi-header">
-          <div class="icon-box" [style.background-color]="kpi.color + '20'" [style.color]="kpi.color">
+          <div
+            class="icon-box"
+            [style.background-color]="kpi.color + '20'"
+            [style.color]="kpi.color"
+          >
             <mat-icon>{{ kpi.icon }}</mat-icon>
           </div>
           <span class="trend" [class.negative]="kpi.trend < 0">
             {{ kpi.trend > 0 ? "+" : "" }}{{ kpi.trend }}%
-            <mat-icon>{{ kpi.trend > 0 ? "trending_up" : "trending_down" }}</mat-icon>
+            <mat-icon>{{
+              kpi.trend > 0 ? "trending_up" : "trending_down"
+            }}</mat-icon>
           </span>
         </div>
         <div class="kpi-body">
@@ -30,13 +37,60 @@
         </div>
       </mat-card-content>
     </mat-card>
+    }
   </div>
 
   <div class="dashboard-grid">
+    <!-- CHART SECTION (Pipeline Funnel) -->
+    <mat-card class="data-card chart-card">
+      <mat-card-header>
+        <mat-card-title>Pipeline de Ventas</mat-card-title>
+        <span class="card-subtitle">Valor total por etapa</span>
+      </mat-card-header>
+      <mat-card-content class="chart-container">
+        <canvas
+          baseChart
+          [data]="chartData"
+          [options]="chartOptions"
+          [type]="'bar'"
+        >
+        </canvas>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- ACTIVITIES SECTION -->
+    <mat-card class="data-card activities-card">
+      <mat-card-header>
+        <mat-card-title>Actividades de Hoy</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="activities-list">
+          @for (activity of upcomingActivities; track activity.id) {
+          <div class="activity-item">
+            <div class="activity-time">{{ activity.time }}</div>
+            <div class="activity-icon" [ngClass]="activity.type">
+              <mat-icon>{{
+                activity.type === "call"
+                  ? "phone_in_talk"
+                  : activity.type === "email"
+                  ? "mail"
+                  : "location_on"
+              }}</mat-icon>
+            </div>
+            <div class="activity-details">
+              <span class="activity-title">{{ activity.title }}</span>
+              <span class="activity-desc">{{ activity.description }}</span>
+            </div>
+          </div>
+          }
+        </div>
+      </mat-card-content>
+    </mat-card>
+
     <!-- Project Progress Section -->
     <mat-card class="data-card project-card">
       <mat-card-header>
-        <mat-card-title>Avance de Proyectos Activos</mat-card-title>
+        <mat-card-title>Avance de Proyectos</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <div class="project-list">
@@ -45,36 +99,14 @@
             <span class="name">{{ project.name }}</span>
             <span class="percentage">{{ project.progress }}%</span>
           </div>
-          <mat-progress-bar mode="determinate" [value]="project.progress"
-            [color]="project.status === 'at-risk' ? 'warn' : 'primary'">
+          <mat-progress-bar
+            mode="determinate"
+            [value]="project.progress"
+            [color]="project.status === 'at-risk' ? 'warn' : 'primary'"
+          >
           </mat-progress-bar>
-          <span class="status-badge" [class]="project.status">
-            {{ project.status === "at-risk" ? "En Riesgo" : "A Tiempo" }}
-          </span>
           }
         </div>
-      </mat-card-content>
-    </mat-card>
-
-    <!-- Recent Actions / Leads -->
-    <mat-card class="data-card leads-card">
-      <mat-card-header>
-        <mat-card-title>Últimos Leads</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="leads-list">
-          @for (lead of recentLeads; track $index) {
-          <div class="lead-item">
-            <div class="lead-avatar">{{ lead.name[0] }}</div>
-            <div class="lead-details">
-              <span class="lead-name">{{ lead.name }}</span>
-              <span class="lead-meta">{{ lead.source }} • {{ lead.date }}</span>
-            </div>
-            <mat-icon class="action-icon">chevron_right</mat-icon>
-          </div>
-          }
-        </div>
-        <button class="view-all-btn">Ver todos los prospectos</button>
       </mat-card-content>
     </mat-card>
   </div>

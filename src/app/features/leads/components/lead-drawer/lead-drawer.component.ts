@@ -15,6 +15,15 @@ export class LeadDrawerComponent {
   @Output() close = new EventEmitter<void>();
 
   // State for actions form
+  statusLabels: Record<string, string> = {
+    new: 'Nuevo',
+    contacted: 'Contactado',
+    visit: 'Visita Agendada',
+    proposal: 'Cotización',
+    option: 'Opcionado',
+    negotiation: 'Cierre',
+  };
+
   activeAction: 'email' | 'call' | 'note' | 'whatsapp' | null = null;
 
   // Input models

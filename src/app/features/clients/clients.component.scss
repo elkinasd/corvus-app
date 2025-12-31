@@ -1,0 +1,335 @@
+@use "../../../styles/variables" as *;
+
+.clients-container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+}
+
+// --- HEADER ---
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap; // Allow wrapping
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .add-btn {
+      width: 100%;
+      margin-top: 0.5rem;
+      justify-content: center;
+    }
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: $color-navy-900; // Fixed: Dark text for light background
+    margin: 0;
+    letter-spacing: -0.5px;
+
+    @media (max-width: 768px) {
+      font-size: 1.75rem;
+    }
+  }
+
+  .subtitle {
+    color: $color-slate-500;
+    margin: 0.5rem 0 0;
+  }
+
+  .add-btn {
+    background: $primary-action; // Cyan gradient
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+// --- FILTER ---
+.filter-section {
+  margin-bottom: 1.5rem;
+
+  .search-field {
+    width: 100%;
+    max-width: 400px;
+
+    // Fix Input Styles for Light Theme
+    ::ng-deep .mat-mdc-text-field-wrapper {
+      background-color: white !important;
+      border-radius: 8px;
+      border: 1px solid $border-light;
+      padding-left: 12px;
+    }
+
+    ::ng-deep .mat-mdc-form-field-icon-prefix {
+      color: $color-slate-400; // Search icon gray
+      padding-right: 8px;
+    }
+
+    input {
+      color: $color-navy-900; // Dark text
+    }
+
+    // Label Floating Fix
+    ::ng-deep .mat-mdc-floating-label {
+      top: 50% !important;
+    }
+  }
+}
+
+// --- TABLE CONTAINER ---
+.table-container {
+  background: white; // Main Table Card
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  // --- MOBILE CARD VIEW TRANSFORMATION ---
+  @media (max-width: 768px) {
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+
+    table {
+      display: block; // Allow block layout
+      background: transparent;
+
+      // Hide Header Row
+      thead,
+      .mat-mdc-header-row {
+        display: none;
+      }
+
+      tbody {
+        display: block;
+        background: transparent;
+      }
+
+      .mat-mdc-row {
+        display: flex; // Use flex column for the card
+        flex-direction: column;
+        align-items: stretch;
+        background: white;
+        border-radius: 16px; // More rounded
+        margin-bottom: 1rem;
+        padding: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); // Popping shadow
+        border: 1px solid $border-light;
+        position: relative;
+        height: auto !important; // Override material height
+      }
+
+      // Cells act as rows within the card
+      .mat-mdc-cell {
+        display: flex;
+        justify-content: space-between; // Label left, Value right
+        align-items: center;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #f1f5f9;
+        font-size: 0.95rem;
+        min-height: unset;
+
+        &:last-child {
+          border-bottom: none;
+          padding-bottom: 0;
+        }
+
+        // --- NAME COLUMN (Card Header) ---
+        &.mat-column-name {
+          padding-bottom: 1rem;
+          margin-bottom: 0.5rem;
+          border-bottom: 2px solid $border-light;
+          justify-content: flex-start; // Avatar and name left aligned
+
+          .user-cell {
+            width: 100%;
+          }
+        }
+
+        // --- ACTIONS (Floating Button) ---
+        &.mat-column-actions {
+          position: absolute;
+          top: 1rem;
+          right: 0.5rem;
+          border: none;
+          padding: 0;
+          width: auto;
+          background: transparent;
+        }
+
+        // --- LABELS FOR OTHER COLUMNS ---
+        // We use attr data or hardcoded labels for now.
+        // Ideally we'd use [data-label] in HTML, but CSS content works for fixed columns.
+
+        &.mat-column-email::before {
+          content: "Email";
+          font-weight: 600;
+          color: $color-slate-400;
+          font-size: 0.85rem;
+        }
+        &.mat-column-phone::before {
+          content: "Teléfono";
+          font-weight: 600;
+          color: $color-slate-400;
+          font-size: 0.85rem;
+        }
+        &.mat-column-type::before {
+          content: "Tipo";
+          font-weight: 600;
+          color: $color-slate-400;
+          font-size: 0.85rem;
+          margin-right: 1rem;
+        }
+        &.mat-column-status::before {
+          content: "Estado";
+          font-weight: 600;
+          color: $color-slate-400;
+          font-size: 0.85rem;
+          margin-right: 1rem;
+        }
+        &.mat-column-lastActivity::before {
+          content: "Última Act.";
+          font-weight: 600;
+          color: $color-slate-400;
+          font-size: 0.85rem;
+        }
+      }
+    }
+
+    // Fix Paginator Overflow
+    ::ng-deep .mat-mdc-paginator-container {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+}
+
+table {
+  width: 100%;
+
+  th.mat-mdc-header-cell {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: $color-navy-700;
+    text-transform: uppercase;
+    background: #f8fafc; // Light Gray Header
+    border-bottom: 1px solid $border-light;
+    padding: 1.5rem 1rem;
+  }
+
+  td.mat-mdc-cell {
+    color: $color-navy-800;
+    font-size: 0.95rem;
+    border-bottom: 1px solid $border-light;
+    padding: 1rem;
+  }
+
+  tr.clickable-row {
+    transition: background 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      background: #f1f5f9; // Slight gray on hover
+    }
+  }
+}
+
+// --- USER CELL ---
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    background: $color-blue-100;
+    color: $color-blue-500;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+
+    .name {
+      font-weight: 600;
+      color: $color-navy-900;
+    }
+
+    .id-text {
+      font-size: 0.75rem;
+      color: $color-slate-500;
+    }
+  }
+}
+
+// --- BADGES ---
+.type-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  &.inversionista {
+    background: #fae8ff; // Purple 100
+    color: #a855f7; // Purple 500
+  }
+  &.comprador {
+    background: #dbeafe; // Blue 100
+    color: #3b82f6; // Blue 500
+  }
+  &.prospecto {
+    background: #f1f5f9;
+    color: #64748b;
+  }
+}
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  &::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #cbd5e1;
+  }
+
+  &.activo::before {
+    background: $color-success;
+    box-shadow: 0 0 0 2px rgba($color-success, 0.2);
+  }
+  &.vip::before {
+    background: $color-warning;
+    box-shadow: 0 0 0 2px rgba($color-warning, 0.2);
+  }
+  &.inactivo::before {
+    background: #94a3b8;
+  }
+}

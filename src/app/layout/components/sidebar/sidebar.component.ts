@@ -18,6 +18,6 @@ export class SidebarComponent {
     { label: 'Presupuestos', route: '/budgets', icon: 'payments' },
     { label: 'Inventario', route: '/inventory', icon: 'inventory_2' },
     { label: 'Tesorería', route: '/treasury', icon: 'account_balance' },
-    { label: 'CRM', route: '/crm', icon: 'hub' },
+    { label: 'Clientes', route: '/clients', icon: 'hub' },
   ];
 }

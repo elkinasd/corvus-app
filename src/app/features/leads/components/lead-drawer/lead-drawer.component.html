@@ -9,7 +9,7 @@
   <div class="drawer-header">
     <div class="header-top">
       <span class="status-badge" [class]="lead.status">{{
-        lead.status | uppercase
+        statusLabels[lead.status] || (lead.status | uppercase)
       }}</span>
       <button class="close-btn" (click)="onClose()">
         <i class="material-icons">close</i>
