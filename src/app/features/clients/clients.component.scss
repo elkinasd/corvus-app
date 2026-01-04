@@ -33,7 +33,7 @@
   h1 {
     font-size: 2rem;
     font-weight: 800;
-    color: $color-navy-900; // Fixed: Dark text for light background
+    color: $color-indigo-900; // Fixed: Dark text for light background
     margin: 0;
     letter-spacing: -0.5px;
 
@@ -81,7 +81,7 @@
     }
 
     input {
-      color: $color-navy-900; // Dark text
+      color: $color-indigo-900; // Dark text
     }
 
     // Label Floating Fix
@@ -225,7 +225,7 @@ table {
   th.mat-mdc-header-cell {
     font-size: 0.85rem;
     font-weight: 700;
-    color: $color-navy-700;
+    color: $color-indigo-700;
     text-transform: uppercase;
     background: #f8fafc; // Light Gray Header
     border-bottom: 1px solid $border-light;
@@ -233,7 +233,7 @@ table {
   }
 
   td.mat-mdc-cell {
-    color: $color-navy-800;
+    color: $color-indigo-800;
     font-size: 0.95rem;
     border-bottom: 1px solid $border-light;
     padding: 1rem;
@@ -274,7 +274,7 @@ table {
 
     .name {
       font-weight: 600;
-      color: $color-navy-900;
+      color: $color-indigo-900;
     }
 
     .id-text {

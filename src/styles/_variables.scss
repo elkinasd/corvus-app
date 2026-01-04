@@ -1,51 +1,83 @@
-// === CORVUS DESIGN TOKENS ===
+@use "sass:color";
+// === CORVUS DESIGN TOKENS (POWERED BY KANTO PALETTE) ===
 
-// 1. Primitive Colors
-$color-navy-900: #0b1120; // Fondo Profundo
-$color-navy-800: #1e293b; // Tarjetas
-$color-navy-700: #334155; // Bordes/Hover
-$color-navy-600: #475569;
-$color-navy-text: #172b4d; // Texto principal Light Mode
+// 1. Primitive Colors mapped to Kanto Identity
 
-$color-cyan-500: #0ea5e9; // Primary Base
-$color-cyan-400: #38bdf8; // Primary Hover/Text
-$color-cyan-gradient: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+// Meseta Añil (Indigo Plateau) - The Deep Void
+$color-indigo-900: #1a1b4b; // Deep Focus
+$color-indigo-800: #2e2a5b; // Card BG
+$color-indigo-700: #433d82; // Borders
+$color-indigo-600: #5b54a3;
+$color-indigo-text: #ffffff; // Texto Light
 
+// Ciudad Celeste (Cerulean City) - The Water Blue (Primary)
+$color-cyan-500: #0088cc; // Primary Base (Cerulean)
+$color-cyan-400: #33aadd; // Primary Hover
+$color-cyan-gradient: linear-gradient(135deg, #0088cc 0%, #33aadd 100%);
+
+// Pueblo Paleta (Palette Town)
 $color-white: #ffffff;
-$color-gray-50: #f9fafb;
-$color-gray-100: #f3f4f6;
-$color-gray-200: #e5e7eb;
-$color-gray-300: #d1d5db;
-$color-gray-400: #9ca3af;
-$color-slate-400: #94a3b8; // Texto secundario Dark
-$color-slate-500: #64748b; // Texto secundario Light
+$color-gray-50: #f8fafc;
+$color-gray-100: #f1f5f9;
+$color-gray-200: #e2e8f0;
+$color-gray-300: #cbd5e1;
 
-// Status Primitives
-$color-emerald-500: #10b981;
-$color-emerald-100: #d1fae5;
-$color-amber-500: #f59e0b;
-$color-amber-100: #fef3c7;
-$color-rose-500: #f43f5e;
-$color-rose-100: #ffe4e6;
-$color-violet-500: #8b5cf6;
-$color-violet-100: #ede9fe;
-$color-blue-500: #3b82f6;
-$color-blue-100: #dbeafe;
+// Ciudad Plateada (Pewter City) - Grey/Metal
+$color-gray-400: #a9bcca;
+$color-slate-400: #8ba8b7; // Texto secundario Dark (Pewter)
+$color-slate-500: #64748b;
+
+// Status Primitives (The Cities)
+
+// Ciudad Verde (Viridian City) - Success
+$color-emerald-500: #108060;
+$color-emerald-400: #34d058; // Bright Green
+$color-emerald-600: #0a4f3b; // Dark Green
+$color-emerald-100: rgba(#108060, 0.2);
+
+// Ciudad Azafrán (Saffron City) - Warning/Gold
+$color-amber-500: #f4c430;
+$color-amber-400: #f9d666; // Bright Gold
+$color-amber-600: #b38b15; // Dark Gold
+$color-amber-100: rgba(#f4c430, 0.2);
+
+// Ciudad Fucsia (Fuchsia City) - Special/Visit
+$color-rose-500: #d9029d;
+$color-rose-400: #f14eca; // Bright Pink
+$color-rose-600: #9e0272; // Dark Pink
+$color-rose-100: rgba(#d9029d, 0.2);
+
+// Ciudad Carmín (Vermilion City) - Hot/Urgent
+$color-red-500: #e34234;
+$color-red-400: #f07b71; // Bright Red
+$color-red-600: #a82b20; // Dark Red
+
+// Pueblo Lavanda (Lavender Town) - Inactive
+$color-violet-500: #967bb6;
+$color-violet-400: #bda3db; // Bright Violet
+$color-violet-600: #6f588a; // Dark Violet
+$color-violet-100: rgba(#967bb6, 0.2);
+
+// Ciudad Azulona (Celadon City) - New/Fresh
+$color-blue-500: #ace1af;
+$color-blue-400: #c9eccb; // Bright Celadon
+$color-blue-600: #7eb381; // Dark Celadon
+$color-blue-100: rgba(#ace1af, 0.2);
 
 // 2. Semantic Variables
 
 // --- DARK MODE (App Default) ---
-$bg-app: $color-navy-900;
-$bg-card: $color-navy-800;
-$bg-input: $color-navy-900;
+$bg-app: $color-indigo-900; // Meseta Añil
+$bg-card: $color-indigo-800;
+$bg-input: rgba(255, 255, 255, 0.05); // Glass style
 $text-main: $color-white;
 $text-secondary: $color-slate-400;
 
-// --- LIGHT MODE (Panels/Drawers) ---
+// --- LIGHT MODE (Legacy/Panels) ---
 $bg-panel: $color-white;
 $bg-subtle: $color-gray-50;
-$border-light: $color-gray-200;
-$text-main-light: $color-navy-text;
+$border-light: rgba(255, 255, 255, 0.1); // Glass border
+$text-main-light: $color-indigo-text; // Updated from navy-text
 $text-secondary-light: $color-slate-500;
 
 // --- ACTIONS & ACCENTS ---
@@ -53,27 +85,44 @@ $primary-accent: $color-cyan-400;
 $primary-action: $color-cyan-gradient;
 $color-success: $color-emerald-500;
 $color-warning: $color-amber-500;
-$color-danger: $color-rose-500;
-$color-info: $color-blue-500;
+$color-danger: $color-red-500; // Cinnabar/Vermilion logic
+$color-info: $color-blue-500; // Celadon
 
 $border-subtle: rgba(255, 255, 255, 0.08);
 
 // --- STATUS COLORS (Map) ---
-// New / Info
-$status-new-bg: $color-blue-100;
-$status-new-text: $color-blue-500;
-// Contacted / Warning
-$status-contacted-bg: $color-amber-100;
-$status-contacted-text: $color-amber-500;
-// Visit / Violet
-$status-visit-bg: $color-violet-100;
-$status-visit-text: $color-violet-500;
-// Proposal / Pink-Rose
-$status-proposal-bg: $color-rose-100;
-$status-proposal-text: $color-rose-500;
-// Option / Emerald
-$status-option-bg: $color-emerald-100;
-$status-option-text: $color-emerald-500;
-// Negotiation / Red
-$status-negotiation-bg: #fee2e2;
-$status-negotiation-text: #ef4444;
+
+// 1. Nuevos -> Ciudad Celeste (Cerulean) - Start of Journey (Blue)
+$status-new-bg: rgba($color-cyan-500, 0.1);
+$status-new-text: $color-cyan-500;
+
+// 2. Contactados -> Ciudad Azulona (Celadon) - Growth (Mint/Greenish)
+$status-contacted-bg: $color-blue-100;
+$status-contacted-text: color.adjust($color-blue-500, $lightness: -20%);
+
+// 3. Visita Agendada -> Ciudad Fucsia (Fuchsia) - Action/Event (Pink)
+$status-visit-bg: $color-rose-100;
+$status-visit-text: $color-rose-500;
+
+// 4. Cotización -> Ciudad Azafrán (Saffron) - Value/Money (Gold)
+$status-proposal-bg: $color-amber-100;
+$status-proposal-text: color.adjust(
+  $color-amber-500,
+  $lightness: -15%
+); // Darken for readability
+
+// 5. Opcionados / Negociación -> Ciudad Carmín (Vermilion) - Hot Lead (Red/Orange)
+// Used for "Opcionados" column
+$status-negotiation-bg: rgba($color-red-500, 0.1);
+$status-negotiation-text: $color-red-500;
+// Used for "Option" badge if strictly needed, mapped to same Hot logic
+$status-option-bg: rgba($color-red-500, 0.1);
+$status-option-text: $color-red-500;
+
+// 6. Cierre / Ganado -> Ciudad Verde (Viridian) - Success (Deep Green)
+$status-won-bg: $color-emerald-100;
+$status-won-text: $color-emerald-500;
+
+// 7. Inactivo / Perdido -> Pueblo Lavanda (Lavender) - Ghost/Dead (Violet)
+$status-inactive-bg: $color-violet-100;
+$status-inactive-text: $color-violet-500;

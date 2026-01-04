@@ -55,6 +55,50 @@ src/app/
 
 ---
 
+## 🎨 Sistema de Diseño (Codename: Kanto)
+
+La identidad visual (UI) de Corvus utiliza una paleta de colores semántica inspirada en la región de Kanto, mapeando ciudades icónicas a funciones de la interfaz para crear una experiencia de usuario inmersiva y consistente.
+
+### 🗺️ El Mapa de Colores (The Color Map)
+
+| Referencia (Codename) | Variable CSS         | Color / Tono        | Función en Corvus                                                |
+| :-------------------- | :------------------- | :------------------ | :--------------------------------------------------------------- |
+| **Meseta Añil**       | `$color-indigo-900`  | **Indigo Profundo** | **Fondo Global (App BG)**. El vacío espacial donde vive la app.  |
+| **Pueblo Paleta**     | `$color-white`       | **Blanco Puro**     | **Texto Principal**. El inicio de todo.                          |
+| **Ciudad Celeste**    | `$color-cyan-500`    | **Azul Cerúleo**    | **Primario / Nuevos Leads**. Inicio del viaje, fresco y neutral. |
+| **Ciudad Azulona**    | `$color-blue-500`    | **Verde Celadón**   | **Contactados**. Crecimiento natural, avance.                    |
+| **Ciudad Fucsia**     | `$color-rose-500`    | **Fucsia Intenso**  | **Visitas / Eventos**. Acción y dinamismo.                       |
+| **Ciudad Azafrán**    | `$color-amber-500`   | **Dorado Azafrán**  | **Cotización / VIP**. Valor, riqueza y atención.                 |
+| **Ciudad Carmín**     | `$color-red-500`     | **Rojo Bermellón**  | **Negociación / Hot**. Urgencia, electricidad y riesgo.          |
+| **Ciudad Verde**      | `$color-emerald-500` | **Verde Viridián**  | **Cierre / Ganado**. Éxito sólido y definitivo.                  |
+| **Pueblo Lavanda**    | `$color-violet-500`  | **Lavanda Pálido**  | **Inactivo / Perdido**. El lugar de descanso de los leads.       |
+
+### 🌡️ Pipeline de Ventas (Lógica de Temperatura)
+
+El pipeline de leads sigue una progresión de "temperatura" que alinea los colores con la cercanía al cierre:
+
+1.  **Fresco (Azul/Cerúleo)**: Lead Nuevo. Recién llegado, neutral.
+2.  **Tibio (Verde Menta/Celadón)**: Contactado. Hay vida, está creciendo.
+3.  **Activo (Fucsia)**: Visita Agendada. Hay movimiento físico.
+4.  **Valioso (Dorado)**: Cotización. Se habla de dinero.
+5.  **Caliente (Rojo/Carmín)**: Negociación. Punto crítico de decisión.
+6.  **Éxito (Verde Solido)**: Ganado. Contrato cerrado.
+7.  **Muerto (Violeta)**: Perdido/Inactivo. Cementerio de leads.
+
+### 🧠 Lógica de Implementación
+
+El archivo `_variables.scss` actúa como el "traductor" entre el Codename y la UI:
+
+```scss
+// Definición Primitiva
+$color-viridian-500: #108060;
+
+// Mapeo Semántico (Ejemplo)
+$status-won-bg: rgba($color-viridian-500, 0.2);
+```
+
+---
+
 ## 📅 Bitácora de Desarrollo
 
 ### 🚀 Inicio del Proyecto - Diciembre 2025

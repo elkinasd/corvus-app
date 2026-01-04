@@ -12,7 +12,14 @@ export interface Lead {
   title: string;
   company?: string;
   value?: number;
-  status: 'new' | 'contacted' | 'visit' | 'proposal' | 'option' | 'negotiation';
+  status:
+    | 'new'
+    | 'contacted'
+    | 'visit'
+    | 'proposal'
+    | 'negotiation'
+    | 'won'
+    | 'inactive';
   lastActivity?: Date;
   timeline?: TimelineEvent[];
 }

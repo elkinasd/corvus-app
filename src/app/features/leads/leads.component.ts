@@ -61,6 +61,27 @@ export class LeadsComponent {
           value: 12000,
           status: 'new',
         },
+        {
+          id: '101',
+          title: 'Constructora Beta',
+          company: 'Lote Campestre',
+          value: 85000,
+          status: 'new',
+        },
+        {
+          id: '102',
+          title: 'Andrés López',
+          company: 'Renovación Baños',
+          value: 3500,
+          status: 'new',
+        },
+        {
+          id: '103',
+          title: 'Inversiones Omega',
+          company: 'Torre Empresarial',
+          value: 500000,
+          status: 'new',
+        },
       ],
     },
     {
@@ -75,12 +96,41 @@ export class LeadsComponent {
           status: 'contacted',
           timeline: [],
         },
+        {
+          id: '104',
+          title: 'María González',
+          company: 'Apartamento 502',
+          value: 125000,
+          status: 'contacted',
+        },
+        {
+          id: '105',
+          title: 'Grupo Hotelero',
+          company: 'Remodelación Lobby',
+          value: 65000,
+          status: 'contacted',
+        },
       ],
     },
     {
       id: 'visit',
       title: 'Visita Agendada',
-      leads: [],
+      leads: [
+        {
+          id: '106',
+          title: 'Carlos Ruiz',
+          company: 'Visita Terreno',
+          value: 200000,
+          status: 'visit',
+        },
+        {
+          id: '107',
+          title: 'Ana María Polo',
+          company: 'Casa Modelo',
+          value: 180000,
+          status: 'visit',
+        },
+      ],
     },
     {
       id: 'proposal',
@@ -96,46 +146,108 @@ export class LeadsComponent {
             {
               id: 'e10',
               type: 'call',
-              title: 'Llamada saliente',
-              description:
-                'Cliente interesado en ver el showroom. Se agendó cita para el martes.',
-              date: new Date(new Date().setHours(new Date().getHours() - 2)),
-            },
-            {
-              id: 'e11',
-              type: 'email',
-              title: 'Email enviado',
-              description: 'Envío de cotización preliminar v1.pdf',
-              date: new Date(new Date().setDate(new Date().getDate() - 1)),
-            },
-            {
-              id: 'e12',
-              type: 'system',
-              title: 'Cambio de estado',
-              description: 'El lead movido de Nuevos a Contactados.',
-              date: new Date(new Date().setDate(new Date().getDate() - 3)),
+              title: 'Llamada de Seguimiento',
+              description: 'Cliente muy interesado.',
+              date: new Date(),
             },
           ],
+        },
+        {
+          id: '108',
+          title: 'Eduardo Santos',
+          company: 'Ampliación Bodega',
+          value: 320000,
+          status: 'proposal',
+        },
+        {
+          id: '109',
+          title: 'Clínica Santa Fe',
+          company: 'Consultorios Nuevos',
+          value: 950000,
+          status: 'proposal',
+        },
+        {
+          id: '110',
+          title: 'Restaurante El Cielo',
+          company: 'Adecuación Local',
+          value: 45000,
+          status: 'proposal',
         },
       ],
     },
     {
-      id: 'option',
-      title: 'Opcionados',
+      id: 'negotiation', // Antes Option
+      title: 'Negoc. / Opcionados',
       leads: [
         {
           id: '5',
           title: 'Elkin Villalobos',
           company: 'Proyecto Corvus',
           value: 150000,
-          status: 'option',
+          status: 'negotiation',
+        },
+        {
+          id: '111',
+          title: 'Inmobiliaria Gold',
+          company: 'Compra Bloque A',
+          value: 1200000,
+          status: 'negotiation',
+        },
+        {
+          id: '112',
+          title: 'Familia Pérez',
+          company: 'Casa Quinta',
+          value: 450000,
+          status: 'negotiation',
         },
       ],
     },
     {
-      id: 'negotiation',
-      title: 'Cierre',
-      leads: [],
+      id: 'won', // Antes Negotiation
+      title: 'Cierre / Ganado',
+      leads: [
+        {
+          id: '6',
+          title: 'Venta Finalizada',
+          company: 'Cliente Feliz S.A.',
+          value: 200000,
+          status: 'won',
+        },
+        {
+          id: '113',
+          title: 'Tech Solutions',
+          company: 'Oficinas Nuevas',
+          value: 180000,
+          status: 'won',
+        },
+        {
+          id: '114',
+          title: 'Juan Valdez',
+          company: 'Local Comercial',
+          value: 350000,
+          status: 'won',
+        },
+      ],
+    },
+    {
+      id: 'inactive',
+      title: 'Perdido / Inactivo',
+      leads: [
+        {
+          id: '115',
+          title: 'Pedro Pablo',
+          company: 'Presupuesto Bajo',
+          value: 2000,
+          status: 'inactive',
+        },
+        {
+          id: '116',
+          title: 'Curioso Sin Plata',
+          company: 'Solo preguntaba',
+          value: 0,
+          status: 'inactive',
+        },
+      ], // El cementerio de leads
     },
   ];
 

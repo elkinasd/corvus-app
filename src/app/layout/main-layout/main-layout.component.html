@@ -1,7 +1,7 @@
 <mat-sidenav-container class="layout-container" [hasBackdrop]="isMobile()">
-  <mat-sidenav 
+  <mat-sidenav
     #sidenav
-    [mode]="isMobile() ? 'over' : 'side'" 
+    [mode]="isMobile() ? 'over' : 'side'"
     [opened]="isSidenavOpened()"
     class="layout-sidebar"
     (closed)="isSidenavOpened.set(false)"
@@ -10,12 +10,12 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="layout-main">
-    <app-header 
-      class="layout-header" 
-      [showMenuButton]="isMobile()"
+    <app-header
+      class="layout-header"
+      [showMenuButton]="true"
       (toggleMenu)="toggleSidenav()"
     ></app-header>
-    
+
     <main class="layout-content">
       <router-outlet></router-outlet>
     </main>

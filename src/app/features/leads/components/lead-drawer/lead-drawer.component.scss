@@ -1,8 +1,11 @@
 @use "../../../../../styles/variables" as *;
+@use "sass:color";
 
 // ============================================
-// DRAWER & TIMELINE STYLES
+// DRAWER STYLES (KANTO DARK PREMIUM)
 // ============================================
+// Estructura manejada por Bootstrap.
+// Estética manejada aquí.
 
 .drawer-backdrop {
   position: fixed;
@@ -10,9 +13,9 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba($color-navy-900, 0.54);
+  background: rgba(0, 0, 0, 0.6) !important;
   z-index: 998;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(4px);
 }
 
 .lead-drawer {
@@ -22,306 +25,170 @@
   width: 500px;
   max-width: 90vw;
   height: 100vh;
-
-  background: $bg-panel;
+  background: $bg-card !important; // Indigo-800
+  color: $text-main !important;
   z-index: 999;
-  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+  box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
   transform: translateX(100%);
   transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  display: flex;
-  flex-direction: column;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
 
   @media (max-width: 600px) {
     width: 100%;
     max-width: 100vw;
   }
-
   &.open {
     transform: translateX(0);
   }
-}
 
-.drawer-header {
-  padding: 24px;
-  border-bottom: 1px solid $border-light;
-  background: $bg-subtle;
+  .drawer-header {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
 
-  .header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-  }
-
-  .status-badge {
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    background: $border-light;
-    color: $text-main-light;
-
-    &.new {
-      background: $status-new-text;
-      color: white;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
     }
-    &.contacted {
-      background: $status-contacted-text;
-      color: white;
-    }
-    &.visit {
-      background: $status-visit-text;
-      color: white;
-    }
-    &.proposal {
-      background: $status-proposal-text;
-      color: white;
-    }
-    &.option {
-      background: $status-option-text;
-      color: white;
-    }
-    &.negotiation {
-      background: $status-negotiation-text;
-      color: white;
-    }
-  }
-
-  .close-btn {
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    color: $text-secondary-light;
-    padding: 4px;
-    border-radius: 4px;
-    &:hover {
-      background: rgba($color-navy-900, 0.08);
-      color: $text-main-light;
-    }
-  }
-
-  h2 {
-    margin: 0;
-    font-size: 24px;
-    color: $text-main-light;
-    line-height: 1.2;
-  }
-
-  .company-name {
-    margin: 4px 0 0;
-    color: $text-secondary-light;
-    font-size: 14px;
-  }
-
-  .lead-value-large {
-    margin-top: 12px;
-    font-size: 20px;
-    font-weight: 600;
-    color: $color-success;
   }
 }
 
-.drawer-content {
-  padding: 24px;
-  overflow-y: auto;
-  flex: 1;
+// CUSTOM BADGES & LOGIC
+.status-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 
-  .action-buttons {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 32px;
+  // Mapeo directo a variables Kanto
+  &.new {
+    background: $status-new-text;
+  }
+  &.contacted {
+    background: $status-contacted-text;
+  }
+  &.visit {
+    background: $status-visit-text;
+  }
+  &.proposal {
+    background: $status-proposal-text;
+  }
+  &.negotiation {
+    background: $status-negotiation-text;
+  }
+  &.won {
+    background: $status-won-text;
+  }
+  &.inactive {
+    background: $status-inactive-text;
+  }
+}
 
-    .action-btn {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px;
-      border: 1px solid $border-light;
-      border-radius: 6px;
-      background: $bg-panel;
-      color: $text-main-light;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-size: 14px;
+.close-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: $text-secondary;
+  padding: 6px;
+  border-radius: 50%;
+  transition: all 0.2s;
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transform: rotate(90deg);
+  }
+}
 
+.lead-value-large {
+  color: $color-emerald-400 !important;
+  text-shadow: 0 0 10px rgba($color-emerald-400, 0.3);
+}
+
+// ACTION BUTTONS (Glass Effect Override)
+.action-btn {
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: white !important;
+  transition: all 0.2s;
+
+  &:hover,
+  &.active {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    transform: translateY(-2px);
+  }
+
+  // Colores específicos al hacer hover o active
+  &.email:hover i,
+  &.email.active i {
+    color: $color-info !important;
+  }
+  &.call:hover i,
+  &.call.active i {
+    color: $color-success !important;
+  }
+  &.note:hover i,
+  &.note.active i {
+    color: $color-warning !important;
+  }
+  &.whatsapp:hover svg,
+  &.whatsapp.active svg {
+    color: #25d366 !important;
+  }
+}
+
+// ACTION FORM CONTAINER (Dark Glass)
+.action-form-container {
+  background: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  animation: slideDown 0.2s ease-out;
+
+  .btn-save {
+    &.note {
+      background: $color-amber-600;
       &:hover {
-        background: $bg-subtle;
-        border-color: $color-gray-300;
-      }
-
-      i {
-        font-size: 18px;
-      }
-
-      &.email:hover i {
-        color: $color-info;
-      }
-      &.call:hover i {
-        color: $color-success;
-      }
-      &.note:hover i {
-        color: $color-warning;
+        background: $color-amber-500;
       }
     }
-  }
-
-  .section-title {
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: $text-secondary-light;
-    margin-bottom: 20px;
-    letter-spacing: 0.5px;
-  }
-}
-
-// ESTILOS DE LA LÍNEA DE TIEMPO
-.timeline {
-  position: relative;
-  padding-left: 20px;
-
-  // La línea vertical
-  &::before {
-    content: "";
-    position: absolute;
-    top: 8px;
-    bottom: 0;
-    left: 19px; // Ajustado para centrar con iconos
-    width: 2px;
-    background: $border-light;
-  }
-
-  .timeline-item {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 24px;
-    position: relative; // Para z-index sobre la línea
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  .timeline-icon {
-    width: 32px; // Más grande que antes
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: $bg-panel;
-    border: 2px solid $border-light;
-    z-index: 1;
-    flex-shrink: 0;
-
-    i {
-      font-size: 16px;
-      color: $text-secondary-light;
-    }
-
     &.call {
-      border-color: $color-success;
-      i {
-        color: $color-success;
+      background: $color-emerald-600;
+      &:hover {
+        background: $color-emerald-500;
       }
     }
     &.email {
-      border-color: $color-info;
-      i {
-        color: $color-info;
-      }
-    }
-    &.system {
-      border-color: $color-warning;
-      i {
-        color: $color-warning;
+      background: $color-blue-600;
+      &:hover {
+        background: $color-blue-500;
       }
     }
     &.whatsapp {
-      border-color: #25d366;
-      i {
-        color: #25d366;
+      background: #25d366;
+      &:hover {
+        background: color.adjust(#25d366, $lightness: 5%);
       }
     }
   }
-
-  .timeline-content {
-    background: $bg-subtle;
-    padding: 12px 16px;
-    border-radius: 8px;
-    flex: 1;
-    font-size: 14px;
-
-    .timeline-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 6px;
-
-      .activity-type {
-        font-weight: 600;
-        color: $text-main-light;
-      }
-
-      .activity-time {
-        font-size: 12px;
-        color: $text-secondary-light;
-      }
-    }
-
-    p {
-      margin: 0;
-      color: $text-main-light;
-      line-height: 1.5;
-    }
-  }
-}
-
-// ============================================
-// ACTION FORMS STYLES
-// ============================================
-
-.action-btn.active {
-  background: $bg-subtle;
-  border-color: $color-gray-300;
-  color: $color-navy-900;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-
-  &.email {
-    color: $color-blue-500;
-    border-color: $color-blue-100;
-    background: $color-blue-100;
-  }
-  &.call {
-    color: $color-emerald-500;
-    border-color: $color-emerald-100;
-    background: $color-emerald-100;
-  }
-  &.note {
-    color: $color-violet-500;
-    border-color: $color-violet-100;
-    background: $color-violet-100;
-  }
-  &.whatsapp {
-    color: #128c7e;
-    border-color: #25d366;
-    background: #dcf8c6;
-  }
-}
-
-.action-form-container {
-  background: $bg-subtle;
-  padding: 16px;
-  border-radius: 8px;
-  margin-bottom: 24px;
-  border: 1px solid $border-light;
-  animation: slideDown 0.2s ease-out;
 }
 
 @keyframes slideDown {
@@ -335,89 +202,105 @@
   }
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+// TIMELINE (Custom Logic - Hard to Bootstrap)
+.timeline {
+  position: relative;
+  padding-left: 0; // Reset padding as we use flex gap
 
-  textarea,
-  input,
-  select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid $border-light;
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 14px;
-    resize: vertical;
-    outline: none;
-    box-sizing: border-box;
-
-    &:focus {
-      border-color: $color-cyan-500;
-      box-shadow: 0 0 0 2px rgba($color-cyan-500, 0.2);
-    }
-  }
-}
-
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  margin-top: 8px;
-
-  button {
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-weight: 500;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-    transition: background 0.2s;
+  &::before {
+    // Vertical Line
+    content: "";
+    position: absolute;
+    top: 18px; // From top of first icon
+    bottom: 0;
+    left: 17px; // Center of 36px icon (18px) - 1px (half line width)
+    width: 2px;
+    background: rgba(255, 255, 255, 0.1);
   }
 
-  .btn-cancel {
-    background: transparent;
-    color: $text-secondary-light;
-    &:hover {
-      background: rgba($color-navy-900, 0.08);
-      color: $text-main-light;
+  .timeline-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 
-  .btn-save {
-    color: white;
+  .timeline-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $bg-card !important;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    z-index: 1;
+    flex-shrink: 0;
+    position: relative;
 
-    &.note {
-      background: $color-warning;
-      &:hover {
-        background: darken($color-warning, 5%);
-      }
+    i,
+    svg {
+      font-size: 16px;
+      color: $text-secondary !important;
     }
+
     &.call {
-      background: $color-success;
-      &:hover {
-        background: darken($color-success, 5%);
+      border-color: $color-emerald-500;
+      i {
+        color: $color-emerald-400 !important;
       }
     }
     &.email {
-      background: $color-info;
-      &:hover {
-        background: darken($color-info, 5%);
+      border-color: $color-blue-500;
+      i {
+        color: $color-blue-400 !important;
+      }
+    }
+    &.system {
+      border-color: $color-amber-500;
+      i {
+        color: $color-amber-400 !important;
       }
     }
     &.whatsapp {
-      background: #25d366;
-      &:hover {
-        background: #128c7e;
+      border-color: #25d366;
+      svg {
+        color: #25d366 !important;
       }
     }
   }
-}
 
-.empty-state {
-  text-align: center;
-  color: $text-secondary-light;
-  font-style: italic;
-  padding: 20px;
+  .timeline-content {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 16px;
+    flex: 1;
+
+    p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.85) !important;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .activity-type {
+      font-weight: 600;
+      color: white;
+      font-size: 0.9rem;
+    }
+    .activity-time {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.5) !important;
+    }
+  }
 }
