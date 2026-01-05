@@ -1,20 +1,26 @@
 <mat-toolbar class="header-toolbar">
   <div class="header-left">
     @if (showMenuButton()) {
-      <button mat-icon-button (click)="onToggleMenu()" class="menu-btn">
-        <mat-icon>menu</mat-icon>
-      </button>
+    <button mat-icon-button (click)="onToggleMenu()" class="menu-btn">
+      <mat-icon>menu</mat-icon>
+    </button>
     }
     <h2 class="page-title">Bienvenido a Corvus</h2>
   </div>
-  
+
   <span class="spacer"></span>
 
-  <div class="header-right">
+  <div class="header-right d-flex align-items-center gap-3">
+    <button mat-icon-button (click)="themeService.toggleTheme()">
+      <mat-icon>{{
+        themeService.currentTheme() === "dark" ? "light_mode" : "dark_mode"
+      }}</mat-icon>
+    </button>
+
     <div class="user-profile">
       <div class="avatar">U</div>
       @if (!showMenuButton()) {
-        <span class="username">Admin</span>
+      <span class="username">Admin</span>
       }
     </div>
   </div>

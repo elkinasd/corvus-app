@@ -3,6 +3,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
+import { ThemeService } from '../../../core/services/theme.service';
+
 @Component({
   selector: 'app-header',
   imports: [MatToolbarModule, MatButtonModule, MatIconModule],
@@ -12,6 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
 export class HeaderComponent {
   showMenuButton = input(false);
   toggleMenu = output();
+
+  constructor(public themeService: ThemeService) {}
 
   onToggleMenu() {
     this.toggleMenu.emit();

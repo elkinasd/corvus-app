@@ -19,9 +19,9 @@ export class MainLayoutComponent {
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
   isMobile = toSignal(
-    this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.TabletPortrait]).pipe(
-      map(result => result.matches)
-    ),
+    this.breakpointObserver
+      .observe([Breakpoints.Handset, Breakpoints.TabletPortrait])
+      .pipe(map((result) => result.matches)),
     { initialValue: false }
   );
 
@@ -32,20 +32,20 @@ export class MainLayoutComponent {
       if (this.isMobile()) {
         this.isSidenavOpened.set(false);
       } else {
-        this.isSidenavOpened.set(true);
-      }
-    });
-
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      if (this.isMobile()) {
         this.isSidenavOpened.set(false);
       }
     });
+
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        if (this.isMobile()) {
+          this.isSidenavOpened.set(false);
+        }
+      });
   }
 
   toggleSidenav() {
-    this.isSidenavOpened.update(value => !value);
+    this.isSidenavOpened.update((value) => !value);
   }
 }

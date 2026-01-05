@@ -41,6 +41,43 @@
     transform: translateX(0);
   }
 
+  .title-text {
+    color: var(--text-main);
+  }
+  .subtitle-text {
+    color: var(--text-secondary);
+  }
+  .section-title {
+    color: var(--text-tertiary);
+  }
+
+  // Inputs within drawer
+  .theme-input {
+    background-color: var(--bg-input) !important;
+    color: var(--text-main) !important;
+    border-color: var(--border-subtle) !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+
+    &::placeholder {
+      color: var(--text-tertiary);
+    }
+
+    &:focus {
+      background-color: var(--bg-input) !important;
+      color: var(--text-main) !important;
+      border-color: var(--color-info) !important;
+      box-shadow: 0 0 0 0.2rem rgba(var(--color-info), 0.25);
+    }
+
+    // Force options to be dark in dark mode to prevent white-on-white
+    option {
+      background-color: #2e2a5b; // Using hard hex or var(--bg-card) without transparency
+      color: white;
+    }
+  }
+
   .drawer-header {
     background: linear-gradient(
       180deg,
@@ -107,7 +144,7 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  color: $text-secondary;
+  color: var(--text-secondary);
   padding: 6px;
   border-radius: 50%;
   transition: all 0.2s;
@@ -125,15 +162,15 @@
 
 // ACTION BUTTONS (Glass Effect Override)
 .action-btn {
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  background-color: rgba(255, 255, 255, 0.05) !important;
-  color: white !important;
+  border: 1px solid var(--border-medium) !important;
+  background-color: var(--bg-input) !important;
+  color: var(--text-main) !important;
   transition: all 0.2s;
 
   &:hover,
   &.active {
-    background-color: rgba(255, 255, 255, 0.15) !important;
-    border-color: rgba(255, 255, 255, 0.4) !important;
+    background-color: var(--bg-hover) !important;
+    border-color: var(--text-secondary) !important;
     transform: translateY(-2px);
   }
 
@@ -215,7 +252,7 @@
     bottom: 0;
     left: 17px; // Center of 36px icon (18px) - 1px (half line width)
     width: 2px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--border-medium);
   }
 
   .timeline-item {
@@ -284,7 +321,7 @@
 
     p {
       margin: 0;
-      color: rgba(255, 255, 255, 0.85) !important;
+      color: var(--text-secondary) !important;
       font-size: 0.95rem;
       line-height: 1.5;
     }
@@ -295,12 +332,12 @@
     }
     .activity-type {
       font-weight: 600;
-      color: white;
+      color: var(--text-main);
       font-size: 0.9rem;
     }
     .activity-time {
       font-size: 11px;
-      color: rgba(255, 255, 255, 0.5) !important;
+      color: var(--text-tertiary) !important;
     }
   }
 }

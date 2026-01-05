@@ -35,9 +35,3 @@
     color: $primary-accent;
   }
 }
-
-// Ajuste para evitar la barra blanca superior:
-// Asegurar que el container no tenga márgenes que colapsen
-.container-fluid {
-  overflow-x: hidden;
-}

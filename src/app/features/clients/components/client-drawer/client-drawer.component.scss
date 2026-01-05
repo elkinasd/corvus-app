@@ -1,0 +1,236 @@
+@use "../../../../../styles/variables" as *;
+@use "sass:map";
+@use "@angular/material" as mat;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #ffffff;
+  color: $color-indigo-900;
+  position: relative;
+  z-index: 50;
+}
+
+.drawer-header {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  .header-content {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    .avatar-large {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background-color: var(--mat-sys-primary-container);
+      color: var(--mat-sys-on-primary-container);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .user-info {
+      display: flex;
+      flex-direction: column;
+
+      h2 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 500;
+      }
+      .id-text {
+        font-size: 0.875rem;
+        color: var(--mat-sys-on-surface-variant);
+        margin-bottom: 0.5rem;
+      }
+      .badges {
+        display: flex;
+        gap: 0.5rem;
+
+        .status-badge {
+          padding: 2px 8px;
+          border-radius: 4px;
+          font-size: 0.75rem;
+          font-weight: 500;
+
+          &.vip {
+            background: #ffd700;
+            color: #000;
+          }
+          &.activo {
+            background: #e6f4ea;
+            color: #1e8e3e;
+          }
+          &.inactivo {
+            background: #fce8e6;
+            color: #c5221f;
+          }
+        }
+
+        .type-badge {
+          font-size: 0.75rem;
+          color: var(--mat-sys-primary);
+          border: 1px solid var(--mat-sys-outline-variant);
+          padding: 1px 6px;
+          border-radius: 10px;
+        }
+      }
+    }
+  }
+}
+
+.client-tabs {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.tab-content {
+  padding: 1.5rem;
+}
+
+.section {
+  margin-bottom: 2rem;
+
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--mat-sys-primary);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+    padding-bottom: 0.5rem;
+  }
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.field {
+  label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--mat-sys-on-surface-variant);
+    margin-bottom: 0.25rem;
+  }
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 400;
+  }
+}
+
+.placeholder-text {
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--mat-sys-outline);
+}
+
+.financial-card {
+  background: var(--mat-sys-surface-container-low);
+  padding: 1rem;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+
+  .metric {
+    display: flex;
+    flex-direction: column;
+
+    .label {
+      font-size: 0.75rem;
+      color: var(--mat-sys-on-surface-variant);
+    }
+    .value {
+      font-weight: 600;
+      font-size: 1.1rem;
+
+      &.success {
+        color: #1e8e3e;
+      }
+      &.danger {
+        color: #c5221f;
+      }
+      &.info {
+        color: var(--mat-sys-primary);
+      }
+    }
+  }
+}
+
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+.risk-check {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+
+    mat-icon.check {
+      color: #1e8e3e;
+      font-size: 1.2rem;
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+  }
+}
+
+.docs-list {
+  h4 {
+    margin: 0 0 0.5rem;
+    font-size: 0.9rem;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--mat-sys-outline-variant);
+      font-size: 0.9rem;
+
+      mat-icon {
+        font-size: 1.2rem;
+        width: 1.2rem;
+        height: 1.2rem;
+        color: var(--mat-sys-on-surface-variant);
+      }
+
+      &.missing {
+        color: #c5221f;
+        mat-icon {
+          color: #c5221f;
+        }
+      }
+    }
+  }
+}
+
+.drawer-actions {
+  padding: 1rem;
+  border-top: 1px solid var(--mat-sys-outline-variant);
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}

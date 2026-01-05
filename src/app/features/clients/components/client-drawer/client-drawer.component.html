@@ -1,0 +1,154 @@
+<div class="drawer-header">
+  <div class="header-content">
+    <div class="avatar-large">{{ client.name[0] }}</div>
+    <div class="user-info">
+      <h2>{{ client.name }}</h2>
+      <span class="id-text">CC. {{ client.id }}</span>
+      <div class="badges">
+        <span class="status-badge" [class]="client.status | lowercase">{{
+          client.status
+        }}</span>
+        <span class="type-badge">{{ client.type }}</span>
+      </div>
+    </div>
+  </div>
+  <button mat-icon-button (click)="closeDrawer()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-divider></mat-divider>
+
+<mat-tab-group animationDuration="0ms" class="client-tabs">
+  <mat-tab label="Perfil">
+    <div class="tab-content">
+      <div class="section">
+        <h3><mat-icon>perm_identity</mat-icon> Información Personal</h3>
+        <div class="grid-2">
+          <div class="field">
+            <label>Nombre Completo</label>
+            <p>{{ client.name }}</p>
+          </div>
+          <div class="field">
+            <label>Identificación</label>
+            <p>{{ client.id }} (C.C.)</p>
+          </div>
+          <div class="field">
+            <label>Estado Civil</label>
+            <p>Soltero(a) <span class="placeholder-text">(Mock)</span></p>
+          </div>
+          <div class="field">
+            <label>Ocupación</label>
+            <p>Empleado <span class="placeholder-text">(Mock)</span></p>
+          </div>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="section">
+        <h3><mat-icon>contacts</mat-icon> Contacto</h3>
+        <div class="grid-2">
+          <div class="field">
+            <label>Email</label>
+            <p>{{ client.email }}</p>
+          </div>
+          <div class="field">
+            <label>Teléfono</label>
+            <p>{{ client.phone }}</p>
+          </div>
+          <div class="field">
+            <label>Dirección</label>
+            <p>
+              Calle 100 # 15-20 <span class="placeholder-text">(Mock)</span>
+            </p>
+          </div>
+          <div class="field">
+            <label>Ciudad</label>
+            <p>Bogotá D.C. <span class="placeholder-text">(Mock)</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Financiera">
+    <div class="tab-content">
+      <div class="section">
+        <h3><mat-icon>account_balance_wallet</mat-icon> Salud Financiera</h3>
+        <div class="financial-card">
+          <div class="metric">
+            <span class="label">Ingresos Mensuales</span>
+            <span class="value success">$ 8.500.000</span>
+          </div>
+          <div class="metric">
+            <span class="label">Egresos</span>
+            <span class="value danger">$ 3.200.000</span>
+          </div>
+          <div class="metric">
+            <span class="label">Capacidad Aprox.</span>
+            <span class="value info">$ 1.500.000 / mes</span>
+          </div>
+        </div>
+
+        <div class="grid-2 mt-4">
+          <div class="field">
+            <label>Empresa</label>
+            <p>Tech Solutions SAS</p>
+          </div>
+          <div class="field">
+            <label>Cargo</label>
+            <p>Desarrollador Senior</p>
+          </div>
+          <div class="field">
+            <label>Tipo Contrato</label>
+            <p>Indefinido</p>
+          </div>
+          <div class="field">
+            <label>Antigüedad</label>
+            <p>3 Años</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="SARLAFT">
+    <div class="tab-content">
+      <div class="section">
+        <h3><mat-icon>security</mat-icon> Debida Diligencia</h3>
+
+        <div class="risk-check">
+          <div class="check-item">
+            <mat-icon class="check">check_circle</mat-icon>
+            <span>No reportado en listas restrictivas (OFAC/ONU)</span>
+          </div>
+          <div class="check-item">
+            <mat-icon class="check">check_circle</mat-icon>
+            <span>No es PEP (Persona Políticamente Expuesta)</span>
+          </div>
+          <div class="check-item">
+            <mat-icon class="check">check_circle</mat-icon>
+            <span>Origen de fondos lícito verificado</span>
+          </div>
+        </div>
+
+        <div class="docs-list mt-4">
+          <h4>Documentos Entregados</h4>
+          <ul>
+            <li><mat-icon>description</mat-icon> Fotocopia Cédula 150%</li>
+            <li><mat-icon>description</mat-icon> Declaración de Renta 2024</li>
+            <li class="missing">
+              <mat-icon>warning</mat-icon> Carta Laboral (Pendiente)
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+<div class="drawer-actions">
+  <button mat-stroked-button color="warn">Reportar</button>
+  <button mat-flat-button color="accent" (click)="editClient()">
+    <mat-icon>edit</mat-icon> Completar Perfil
+  </button>
+  <button mat-flat-button color="primary">Generar Cotización</button>
+</div>

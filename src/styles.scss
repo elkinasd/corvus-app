@@ -1,39 +1,121 @@
+@use "styles/themes";
+@use "@angular/material" as mat;
 
-// Include theming for Angular Material with `mat.theme()`.
-// This Sass mixin will define CSS variables that are used for styling Angular Material
-// components according to the Material 3 design spec.
-// Learn more about theming and how to use it for your application's
-// custom components at https://material.angular.dev/guide/theming
-@use '@angular/material' as mat;
-
-html {
-  @include mat.theme((
-    color: (
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-    ),
-    typography: Roboto,
-    density: 0,
-  ));
-}
-
+html,
 body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: light;
-
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
-  margin: 0;
+  height: 100%;
 }
-/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--mat-sys-surface-container);
+  color: var(--mat-sys-on-surface);
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// --- GLOBAL UTILITIES ---
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
+
+// --- PREMIUM MODAL OVERRIDES (Global) ---
+  .premium-modal-panel {
+  // 1. Remove the default border radius if you want a super sleek look,
+  // or keep it but ensure overflow is managed.
+  .mat-mdc-dialog-container {
+    padding: 0 !important; // Kill default padding
+    border-radius: 16px !important; // Premium rounded corners
+  }
+
+  // 2. Ensure the content inside takes full height so our custom scroll works
+  .mat-mdc-dialog-surface {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+}
+
+// --- GLOBAL OVERLAYS FIX (For Missing Theme) ---
+// This fixes the transparent/unstyled DatePicker and Select dropdowns
+// by forcibly mapping them to our Kanto Theme Variables.
+.cdk-overlay-pane {
+  // 1. Selects, Menus, Autocomplete
+  .mat-mdc-select-panel,
+  .mat-mdc-menu-panel,
+  .mat-mdc-autocomplete-panel {
+    background-color: var(--bg-card) !important;
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-card);
+
+    .mat-mdc-option {
+      color: var(--text-main) !important;
+      &:hover,
+      &.mat-mdc-option-active {
+        background-color: var(--bg-hover) !important;
+      }
+      .mat-mdc-option-pseudo-checkbox {
+        color: var(--text-secondary);
+      }
+    }
+  }
+
+  // 2. DatePicker specifically
+  .mat-datepicker-content {
+    background-color: var(--bg-card) !important;
+    color: var(--text-main) !important;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-subtle);
+
+    // Header (Month/Year)
+    .mat-calendar-header {
+      color: var(--text-main);
+      .mat-calendar-controls {
+        .mat-calendar-arrow {
+          fill: var(--text-secondary);
+        }
+        .mat-icon-button {
+          color: var(--text-secondary);
+        }
+      }
+    }
+
+    // Body (Dates)
+    .mat-calendar-content {
+      .mat-calendar-table-header th {
+        color: var(--text-tertiary);
+      }
+      .mat-calendar-body-cell-content {
+        color: var(--text-main);
+        &:hover {
+          background-color: var(--bg-hover);
+        }
+      }
+      // Selected date
+      .mat-calendar-body-selected {
+        background-color: var(--color-info); // Cyan
+        color: #fff !important;
+      }
+    }
+  }
+}
+
+// --- GLOBAL TOOLTIP FIX ---
+.mdc-tooltip__surface {
+  // Using brand Indigo instead of default black/gray for better feel
+  background-color: #1a1b4b !important; // Indigo 900
+  color: #ffffff !important;
+
+  // Refined shape and shadow
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
+  font-size: 12px !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+
+  // Ensure it's legible
+  font-weight: 500 !important;
+}

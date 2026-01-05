@@ -1,22 +1,35 @@
 @use "../../../styles/variables" as *;
 
 // === CONTENEDOR PRINCIPAL ===
+@use "../../../styles/variables" as *;
+
+// === CONTENEDOR PRINCIPAL ===
 .leads-container {
-  padding: 1.5rem;
-  height: calc(100vh - 64px); // Altura total menos header
+  padding: 1.5rem 2rem; // Más espacio lateral
+  min-height: calc(100vh - 70px);
   width: 100%;
-  overflow: hidden; // Prevenir scroll en el contenedor principal global
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+
+  .title-text {
+    color: var(--text-main);
+    font-size: 2rem;
+    letter-spacing: -0.5px;
+  }
+  .subtitle-text {
+    color: var(--text-tertiary);
+    font-size: 1rem;
+  }
 }
 
 // === HEADER VIEW SELECTOR (Estilo Pildora) ===
 .btn-group {
-  background: #f1f5f9;
+  background: var(--bg-surface-1);
   border-radius: 8px;
   padding: 4px;
   display: inline-flex;
+  border: 1px solid var(--border-subtle);
 
   .btn {
     border: none;
@@ -24,7 +37,7 @@
     padding: 6px 16px;
     font-size: 0.85rem;
     font-weight: 600;
-    color: #64748b;
+    color: var(--text-tertiary);
     display: flex;
     align-items: center;
     gap: 6px;
@@ -33,51 +46,47 @@
     cursor: pointer;
 
     &.active {
-      background: white;
-      color: #0f172a;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      background: var(--bg-card);
+      color: var(--text-main);
+      box-shadow: var(--shadow-card);
     }
 
     &:hover:not(.active) {
-      color: #334155;
-      background: rgba(255, 255, 255, 0.5);
+      color: var(--text-secondary);
+      background: var(--bg-hover);
     }
   }
 }
 
 // === TABLERO KANBAN ===
 .kanban-board {
-  flex: 1; // Ocupar el espacio restante vertical
-  margin-top: 1.5rem;
-  overflow-y: hidden;
-
-  // Layout Flex para columnas
+  flex: 1;
+  margin-top: 2rem;
   display: flex;
-  gap: 1rem;
-  align-items: stretch;
+  gap: 1.5rem;
+  align-items: flex-start; // Align top
 
-  // --- MOBILE (Scroll Horizontal Default) ---
+  // Mobile Scroll
   overflow-x: auto;
-  padding-bottom: 0.5rem;
+  padding-bottom: 1rem;
 
-  // --- DESKTOP (Todo en una pantalla, sin scroll) ---
-  @media (min-width: 1024px) {
-    overflow-x: hidden;
-    padding-bottom: 0;
+  // Desktop
+  @media (min-width: 1200px) {
+    // Si cabe en pantalla, bien, si no, scroll página
+    flex-wrap: nowrap;
   }
 
-  // Personalización del Scrollbar horizontal
   &::-webkit-scrollbar {
-    height: 8px;
+    height: 10px;
   }
   &::-webkit-scrollbar-track {
-    background: transparent;
+    background: rgba(0, 0, 0, 0.05);
   }
   &::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 4px;
+    background: var(--border-medium);
+    border-radius: 5px;
     &:hover {
-      background: #94a3b8;
+      background: var(--text-tertiary);
     }
   }
 }
@@ -85,37 +94,34 @@
 .kanban-column {
   display: flex;
   flex-direction: column;
-  background-color: #f8fafc; // Fondo sutil para la columna
+  background-color: var(--bg-surface-1);
   border-radius: 12px;
-  border: 1px solid #e2e8f0; // Borde sutil
+  border: 1px solid var(--border-subtle);
   height: 100%;
-
-  // --- MOBILE ---
-  min-width: 280px; // Ancho fijo para obligar scroll en móvil si no caben
+  min-width: 280px;
   flex: 0 0 auto;
 
-  // --- DESKTOP ---
   @media (min-width: 1024px) {
-    flex: 1; // Se reparten espacio equitativamente
-    min-width: 0; // Permite reducirse
+    flex: 1;
+    min-width: 0;
     max-width: none;
   }
 
   .column-header {
     padding: 1rem;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--border-subtle);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #fff; // Cabecera blanca para contraste
+    background: var(--bg-card);
     border-radius: 12px 12px 0 0;
 
     h3 {
       font-size: 0.75rem;
-      font-weight: 800; // Extra Bold
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      color: #64748b;
+      color: var(--text-secondary);
       margin: 0;
       white-space: nowrap;
       overflow: hidden;
@@ -123,8 +129,8 @@
     }
 
     .count-badge {
-      background: #f1f5f9;
-      color: #475569;
+      background: var(--bg-hover);
+      color: var(--text-main);
       font-size: 0.75rem;
       font-weight: 700;
       padding: 2px 8px;
@@ -133,16 +139,15 @@
   }
 
   .column-content {
-    flex: 1; // Ocupar resto de la altura de la columna
-    overflow-y: auto; // Scroll interno de las tarjetas
+    flex: 1;
+    overflow-y: auto;
     padding: 1rem;
 
-    // Personalización Scrollbar vertical
     &::-webkit-scrollbar {
       width: 6px;
     }
     &::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
+      background: var(--border-medium);
       border-radius: 3px;
     }
   }
@@ -150,17 +155,17 @@
 
 // === TARJETAS DE LEAD ===
 .lead-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 0.75rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e2e8f0;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-subtle);
   cursor: grab;
   position: relative;
   transition: all 0.2s ease;
 
-  // Borde Izquierdo de Color (Indicador visual)
+  // Borde Izquierdo de Color
   &::before {
     content: "";
     position: absolute;
@@ -168,56 +173,51 @@
     top: 10px;
     bottom: 10px;
     width: 4px;
-    background: #cbd5e1; // Default fallback (Slate-300)
+    background: var(--border-medium);
     border-radius: 0 4px 4px 0;
   }
 
-  // Colores por estado
-  // Colores por estado
+  // Colores por estado (usando variables)
   &.status-new::before {
-    background: $status-new-text;
+    background: var(--color-info);
   }
   &.status-contacted::before {
-    background: $status-contacted-text;
+    background: #33aadd;
   }
   &.status-visit::before {
-    background: $status-visit-text;
+    background: #d9029d;
   }
   &.status-proposal::before {
-    background: $status-proposal-text;
-  }
-  &.status-option::before {
-    background: $status-option-text;
+    background: var(--color-warning);
   }
   &.status-negotiation::before {
-    background: $status-negotiation-text;
+    background: var(--color-danger);
   }
   &.status-won::before {
-    background: $status-won-text; // Viridian
+    background: var(--color-success);
   }
   &.status-inactive::before {
-    background: $status-inactive-text; // Lavender
+    background: #967bb6;
   }
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: var(--border-medium);
     z-index: 10;
   }
 
   .card-title {
     font-size: 0.9rem;
     font-weight: 600;
-    color: #1e293b;
+    color: var(--text-main); // Variable
     margin-bottom: 0.25rem;
-    padding-left: 0.5rem; // Espacio para la barra de color
+    padding-left: 0.5rem;
   }
 
   .card-subtitle {
     font-size: 0.8rem;
-    color: #64748b;
+    color: var(--text-secondary); // Variable
     margin-bottom: 0.75rem;
     display: block;
     padding-left: 0.5rem;
@@ -227,15 +227,15 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid var(--border-subtle);
     padding-top: 0.75rem;
     margin-top: 0.5rem;
 
     .value {
       font-weight: 700;
-      color: #059669;
+      color: var(--color-success-text);
       font-size: 0.9rem;
-      background: #ecfdf5;
+      background: rgba(16, 128, 96, 0.1);
       padding: 2px 8px;
       border-radius: 6px;
     }
@@ -244,21 +244,28 @@
 
 // ESTILOS DE ARRASTRE
 .cdk-drag-preview {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15),
-    0 10px 10px -5px rgba(0, 0, 0, 0.06);
-  background: white;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+  background: var(--bg-card);
   border-radius: 8px;
   padding: 1rem;
   width: 280px;
   z-index: 10000;
   transform: rotate(2deg);
   opacity: 0.95;
+  color: var(--text-main);
+
+  .card-title {
+    color: var(--text-main);
+  }
+  .card-subtitle {
+    color: var(--text-secondary);
+  }
 }
 
 .cdk-drag-placeholder {
   opacity: 0.3;
-  background: #cbd5e1;
-  border: 2px dashed #94a3b8;
+  background: var(--bg-surface-1);
+  border: 2px dashed var(--border-medium);
   min-height: 100px;
   border-radius: 8px;
   margin-bottom: 0.75rem;

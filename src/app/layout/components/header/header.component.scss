@@ -1,8 +1,10 @@
 .header-toolbar {
-  background: white !important;
-  padding: 0 12px 0 16px; // Reducido padding para móvil
+  background: var(--bg-card) !important;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 12px 0 16px;
   display: flex;
   align-items: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .spacer {
@@ -16,15 +18,15 @@
 }
 
 .menu-btn {
-  color: #1e293b;
+  color: var(--text-main);
 }
 
 .page-title {
   font-size: 1rem; // Un poco más pequeña para móvil
   font-weight: 600;
-  color: #1e293b;
+  color: var(--text-main);
   margin: 0;
-  
+
   @media (min-width: 768px) {
     font-size: 1.1rem;
   }
@@ -46,7 +48,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #38bdf8;
+  background: var(--color-info); // Using variable for blue
   color: white;
   display: flex;
   align-items: center;
@@ -58,7 +60,7 @@
 .username {
   font-size: 0.9rem;
   font-weight: 500;
-  color: #475569;
+  color: var(--text-secondary);
   display: none; // Escondido por defecto
 
   @media (min-width: 600px) {

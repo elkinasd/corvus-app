@@ -151,3 +151,30 @@ $status-won-bg: rgba($color-viridian-500, 0.2);
 
 - Unificación del lenguaje visual: Tema Oscuro/Claro consistente en Dashboard y Directorio.
 - Migración a sintaxis moderna `@for` de Angular en vistas principales.
+
+### 🎨 Refinamiento Visual y Estabilidad - Enero 2026
+
+**1. Pulido de Interfaz "Kanto" (Dark/Light Themes)**
+
+- **Lead Drawer V2**: Refactorización completa de los estilos del panel lateral de detalles de lead.
+  - Corrección de problemas de contraste en modo oscuro ("Dark Premium").
+  - Unificación de estilos de botones, timelines y badges para que sean legibles en ambos temas.
+  - Eliminación de artefactos visuales (bordes blancos indeseados).
+
+**2. Optimización del Layout Principal**
+
+- **Clean View por Defecto**: Ajuste en la lógica de `MainLayout` para iniciar con el menú lateral cerrado, maximizando el espacio de trabajo para el usuario desde el primer momento.
+- **Sass Moderno**: Actualización de la sintaxis de hojas de estilo para eliminar advertencias de deprecación (migración de anidamiento CSS estándar).
+
+**3. Refactorización de Formularios y Arquitectura CSS**
+
+- **Control de Clientes (Formularios Robustos):**
+
+  - Implementación de validaciones estrictas en el formulario de creación/edición de clientes.
+  - Bloqueo de acciones (botón "Guardar") hasta cumplir con la integridad de datos (Personal, Financiera, Legal).
+  - Limpieza profunda de código: Eliminación de lógica condicional redundante en templates HTML.
+
+- **Optimización de Rendimiento UI (CSS Diet):**
+  - **Reducción del 60% en CSS**: Migración masiva de estilos personalizados a utilidades de **Bootstrap 5** en el Directorio de Clientes.
+  - **Responsive Híbrido**: Implementación de Mixins SCSS para transformar tablas de datos complejas en "Tarjetas de Resumen" automáticamente en móviles, sin duplicar código HTML.
+  - Estandarización de componentes visuales (Botones, Buscadores) para alinearse con el sistema de diseño global.

@@ -1,0 +1,112 @@
+<h2 mat-dialog-title>Nuevo Cliente</h2>
+<mat-dialog-content>
+  <p class="dialog-subtitle">
+    Ingresa los datos básicos para registrar el prospecto en el sistema.
+  </p>
+
+  <form [formGroup]="clientForm" class="client-form">
+    <!-- Fila 1: Nombres -->
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombres</mat-label>
+        <input
+          matInput
+          formControlName="firstName"
+          placeholder="Ej. Juan Andrés"
+        />
+        <mat-icon matSuffix>person</mat-icon>
+        @if (clientForm.get('firstName')?.hasError('required')) {
+        <mat-error>El nombre es requerido</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Apellidos</mat-label>
+        <input
+          matInput
+          formControlName="lastName"
+          placeholder="Ej. Pérez García"
+        />
+        @if (clientForm.get('lastName')?.hasError('required')) {
+        <mat-error>El apellido es requerido</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <!-- Fila 2: Identificación y Tipo -->
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Documento / Cédula</mat-label>
+        <input
+          matInput
+          formControlName="document"
+          placeholder="Sin puntos ni guiones"
+        />
+        <mat-icon matSuffix>badge</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo de Cliente</mat-label>
+        <mat-select formControlName="type">
+          <mat-option value="Prospecto">Prospecto (Interesado)</mat-option>
+          <mat-option value="Inversionista">Inversionista</mat-option>
+          <mat-option value="Comprador">Comprador Final</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Fila 3: Contacto -->
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Correo Electrónico</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          placeholder="nombre@ejemplo.com"
+          type="email"
+        />
+        <mat-icon matSuffix>email</mat-icon>
+        @if (clientForm.get('email')?.hasError('email')) {
+        <mat-error>Email inválido</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Celular / WhatsApp</mat-label>
+        <input
+          matInput
+          formControlName="phone"
+          placeholder="+57 300..."
+          type="tel"
+        />
+        <mat-icon matSuffix>smartphone</mat-icon>
+        @if (clientForm.get('phone')?.hasError('required')) {
+        <mat-error>El teléfono es contacto vital</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <!-- Fila 4: Marketing -->
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Origen (¿Cómo nos conoció?)</mat-label>
+        <mat-select formControlName="origin">
+          <mat-option value="Instagram">Instagram / Facebook Ads</mat-option>
+          <mat-option value="Google">Google / Página Web</mat-option>
+          <mat-option value="Referido">Referido</mat-option>
+          <mat-option value="Valla"
+            >Valla Publicitaria / Sala de Ventas</mat-option
+          >
+          <mat-option value="Otro">Otro</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancelar</button>
+  <button mat-flat-button color="primary" (click)="save()">
+    Crear Cliente
+  </button>
+</mat-dialog-actions>

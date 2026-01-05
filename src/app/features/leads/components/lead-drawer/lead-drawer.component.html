@@ -15,8 +15,8 @@
         <i class="material-icons">close</i>
       </button>
     </div>
-    <h2 class="m-0 fw-bold text-white fs-3">{{ lead.title }}</h2>
-    <p class="mt-1 text-white-50 fs-6 fw-medium">{{ lead.company }}</p>
+    <h2 class="m-0 fw-bold fs-3 title-text">{{ lead.title }}</h2>
+    <p class="mt-1 fs-6 fw-medium subtitle-text">{{ lead.company }}</p>
     @if (lead.value) {
     <div class="lead-value-large mt-3 fs-3 fw-bold">
       ${{ lead.value | number }}
@@ -79,7 +79,7 @@
           [(ngModel)]="noteContent"
           placeholder="Escribe una nota interna..."
           rows="3"
-          class="form-control bg-dark text-white border-secondary"
+          class="form-control theme-input border-secondary"
         ></textarea>
         <div class="form-actions d-flex justify-content-end gap-2 mt-2">
           <button
@@ -105,7 +105,7 @@
           [(ngModel)]="noteContent"
           placeholder="Escribe el mensaje de WhatsApp..."
           rows="3"
-          class="form-control bg-dark text-white border-secondary"
+          class="form-control theme-input border-secondary"
         ></textarea>
         <div class="form-actions d-flex justify-content-end gap-2 mt-2">
           <button
@@ -129,7 +129,7 @@
       <div class="form-group d-flex flex-column gap-2 mb-3">
         <select
           [(ngModel)]="callOutcome"
-          class="form-select bg-dark text-white border-secondary"
+          class="form-select theme-input border-secondary"
         >
           <option value="" disabled selected>Resultado de la llamada</option>
           <option value="Conectado">Conectado</option>
@@ -141,7 +141,7 @@
           [(ngModel)]="noteContent"
           placeholder="Detalles de la conversación (opcional)..."
           rows="2"
-          class="form-control bg-dark text-white border-secondary mt-2"
+          class="form-control theme-input border-secondary mt-2"
         ></textarea>
         <div class="form-actions d-flex justify-content-end gap-2 mt-2">
           <button
@@ -167,13 +167,13 @@
           type="text"
           [(ngModel)]="emailSubject"
           placeholder="Asunto"
-          class="form-control bg-dark text-white border-secondary"
+          class="form-control theme-input border-secondary"
         />
         <textarea
           [(ngModel)]="emailBody"
           placeholder="Escribe tu correo aquí..."
           rows="5"
-          class="form-control bg-dark text-white border-secondary mt-2"
+          class="form-control theme-input border-secondary mt-2"
         ></textarea>
         <div class="form-actions d-flex justify-content-end gap-2 mt-2">
           <button
@@ -195,7 +195,7 @@
     }
 
     <div
-      class="section-title fw-bold text-white-50 small mb-3 border-bottom border-white-10 pb-2"
+      class="section-title fw-bold small mb-3 border-bottom border-white-10 pb-2"
     >
       Línea de Tiempo
     </div>

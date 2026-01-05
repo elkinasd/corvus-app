@@ -1,0 +1,75 @@
+@use "sass:color";
+
+:root {
+  // ============================================
+  // KANTO DARK (DEFAULT / "The Void")
+  // ============================================
+
+  // Backgrounds
+  --bg-app: #1a1b4b; // Indigo-900 (Meseta Añil)
+  --bg-card: #2e2a5b; // Indigo-800
+  --bg-surface-1: #252350; // Slightly lighter app bg
+  --bg-hover: rgba(255, 255, 255, 0.05);
+
+  // Inputs & Glass
+  --bg-input: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-strong: rgba(0, 0, 0, 0.3);
+
+  // Text
+  --text-main: #ffffff;
+  --text-secondary: #8ba8b7; // Slate-400 (Pewter)
+  --text-tertiary: #64748b; // Slate-500
+
+  // Borders
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.15);
+
+  // Shadows
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 2px 4px -1px rgba(0, 0, 0, 0.15);
+  --shadow-drawer: -5px 0 30px rgba(0, 0, 0, 0.5);
+
+  // Status & Accents (Conserved across themes or slightly adjusted)
+  --color-success: #108060;
+  --color-success-text: #34d058;
+  --color-warning: #f4c430;
+  --color-danger: #e34234;
+  --color-info: #0088cc;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  // ============================================
+  // KANTO LIGHT ("Palette Town Day")
+  // ============================================
+
+  // Backgrounds
+  --bg-app: #f8fafc; // Gray-50
+  --bg-card: #ffffff; // White
+  --bg-surface-1: #f1f5f9; // Gray-100
+  --bg-hover: #f1f5f9;
+
+  // Inputs & Glass
+  --bg-input: #ffffff;
+  --glass-border: #e2e8f0; // Gray-200
+  --glass-strong: rgba(255, 255, 255, 0.9);
+
+  // Text
+  --text-main: #0f172a; // Slate-900 (Deep contrast)
+  --text-secondary: #475569; // Slate-600
+  --text-tertiary: #94a3b8; // Slate-400
+
+  // Borders
+  --border-subtle: #f1f5f9;
+  --border-medium: #cbd5e1;
+
+  // Shadows
+  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px -1px rgba(0, 0, 0, 0.06);
+  --shadow-drawer: -5px 0 30px rgba(0, 0, 0, 0.1);
+
+  // Status adjustments for light mode contrast
+  --color-success-text: #059669; // Darker green for white bg
+}

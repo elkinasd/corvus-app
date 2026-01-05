@@ -67,18 +67,18 @@ $color-blue-100: rgba(#ace1af, 0.2);
 // 2. Semantic Variables
 
 // --- DARK MODE (App Default) ---
-$bg-app: $color-indigo-900; // Meseta Añil
-$bg-card: $color-indigo-800;
-$bg-input: rgba(255, 255, 255, 0.05); // Glass style
-$text-main: $color-white;
-$text-secondary: $color-slate-400;
+$bg-app: var(--bg-app);
+$bg-card: var(--bg-card);
+$bg-input: var(--bg-input);
+$text-main: var(--text-main);
+$text-secondary: var(--text-secondary);
 
 // --- LIGHT MODE (Legacy/Panels) ---
-$bg-panel: $color-white;
-$bg-subtle: $color-gray-50;
-$border-light: rgba(255, 255, 255, 0.1); // Glass border
-$text-main-light: $color-indigo-text; // Updated from navy-text
-$text-secondary-light: $color-slate-500;
+$bg-panel: var(--bg-card); // Merged concept
+$bg-subtle: var(--bg-surface-1);
+$border-light: var(--glass-border);
+$text-main-light: var(--text-main);
+$text-secondary-light: var(--text-secondary);
 
 // --- ACTIONS & ACCENTS ---
 $primary-accent: $color-cyan-400;
@@ -88,7 +88,7 @@ $color-warning: $color-amber-500;
 $color-danger: $color-red-500; // Cinnabar/Vermilion logic
 $color-info: $color-blue-500; // Celadon
 
-$border-subtle: rgba(255, 255, 255, 0.08);
+$border-subtle: var(--border-subtle);
 
 // --- STATUS COLORS (Map) ---
 

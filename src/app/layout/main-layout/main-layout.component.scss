@@ -7,6 +7,8 @@
   width: 280px;
   border: none !important;
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.02);
+  border-radius: 0 !important;
+  background: transparent !important;
 }
 
 .layout-main {
@@ -14,13 +16,11 @@
   flex-direction: column;
 }
 
-.layout-header {
-  height: 70px;
-  display: block; // Mat-toolbar is block by default
-}
-
 .layout-content {
   flex: 1;
-  padding: 24px;
-  background: #f8fafc;
+  padding: 0;
+  overflow-y: auto;
+  background: var(--bg-surface-1);
+  display: flex;
+  flex-direction: column;
 }
