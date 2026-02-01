@@ -178,3 +178,25 @@ $status-won-bg: rgba($color-viridian-500, 0.2);
   - **Reducción del 60% en CSS**: Migración masiva de estilos personalizados a utilidades de **Bootstrap 5** en el Directorio de Clientes.
   - **Responsive Híbrido**: Implementación de Mixins SCSS para transformar tablas de datos complejas en "Tarjetas de Resumen" automáticamente en móviles, sin duplicar código HTML.
   - Estandarización de componentes visuales (Botones, Buscadores) para alinearse con el sistema de diseño global.
+
+### 🔒 Seguridad, UX Premium y Refactoring - Fin Enero 2026
+
+**1. Seguridad y Reglas de Negocio (Lead Lifecycle)**
+
+- **Smart Drag & Drop**: Refinamiento total de la lógica de movimiento de leads en el tablero Kanban.
+- **Admin Guard Pattern**: Implementación de un patrón de seguridad para acciones destructivas o sensibles.
+  - **Protección de Cierres**: Reversar un negocio cerrado ("Ganado") ahora requiere **autorización de administrador** (Password Challenge).
+  - **Transaction Rollback**: Si la autorización falla o se cancela, el sistema devuelve automáticamente la tarjeta a su estado original (UI Optimista con reversión).
+
+**2. Sistema de Diseño Premium (Dark/Light Consistency)**
+
+- **Modales "Floating Card"**: Estandarización de todos los diálogos (Drawer, Crear, Editar) para flotar al 80% del viewport en escritorio con márgenes controlados.
+- **Theme-Aware Engine**: Eliminación de colores "hardcoded". Reescritura de estilos para usar Variables CSS (`--bg-card`, `--text-main`) permitiendo transición fluida entre **Modo Claro y Oscuro**.
+- **Slim Scroll Global**: Implementación de una barra de desplazamiento minimalista y estética a nivel global (`styles.scss`) para reemplazar el scroll nativo de Windows.
+
+**3. Codebase Cleanup & Performance**
+
+- **Bootstrap-First Refactor**: Reescritura del módulo `ClientUpdateDialog`.
+  - Se eliminó el 90% del CSS personalizado del componente.
+  - Se migró a clases de utilidad de **Bootstrap** (`d-flex`, `gap-3`, `row/col`) para el layout, manteniendo la mantenibilidad extrema.
+- **Flexbox Layouts V3**: Corrección definitiva de "sticky footers" y headers en modales, asegurando que solo el contenido central sea scrolleable.

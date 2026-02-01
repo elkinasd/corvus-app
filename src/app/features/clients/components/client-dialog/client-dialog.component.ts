@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Inject, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogRef, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -32,15 +32,17 @@ import { MatIconModule } from '@angular/material/icon';
 export class ClientDialogComponent {
   private fb = inject(FormBuilder);
   private dialogRef = inject(MatDialogRef<ClientDialogComponent>);
+  // Inject data optionally
+  private data = inject(MAT_DIALOG_DATA, { optional: true });
 
   clientForm: FormGroup = this.fb.group({
-    firstName: ['', [Validators.required]],
-    lastName: ['', [Validators.required]],
-    document: ['', [Validators.pattern('^[0-9]+$')]], // Cédula o NIT opcional por ahora
-    email: ['', [Validators.required, Validators.email]],
-    phone: ['', [Validators.required]],
-    type: ['Prospecto', [Validators.required]],
-    origin: [''], // Cómo nos conoció
+    firstName: [this.data?.firstName || '', [Validators.required]],
+    lastName: [this.data?.lastName || '', [Validators.required]],
+    document: [''],
+    email: [this.data?.email || '', [Validators.required, Validators.email]],
+    phone: [this.data?.phone || '', [Validators.required]],
+    type: [this.data?.type || 'Prospecto', [Validators.required]],
+    origin: [''],
   });
 
   save() {

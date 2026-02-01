@@ -11,28 +11,55 @@
   color: white;
 }
 
+// Utility class for the header if not global
+.text-main {
+  color: var(--text-main);
+}
+
 .search-field {
   ::ng-deep .mat-mdc-text-field-wrapper {
-    background-color: white !important;
+    background-color: var(--bg-input) !important;
   }
+
+  ::ng-deep .mat-mdc-form-field-focus-overlay {
+    background-color: transparent !important;
+  }
+
+  // Input Text Color
+  ::ng-deep .mat-mdc-input-element {
+    color: var(--text-main) !important;
+
+    &::placeholder {
+      color: var(--text-tertiary) !important;
+    }
+  }
+
+  // Floating Label
   ::ng-deep .mat-mdc-floating-label {
     top: 50% !important;
+    color: var(--text-secondary) !important;
   }
+}
+
+.search-icon {
+  color: var(--text-secondary);
 }
 
 @mixin mobile-label {
   font-weight: 600;
-  color: $color-slate-400;
+  color: var(--text-secondary);
   font-size: 0.85rem;
   margin-right: 1rem;
 }
 
 .table-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle) !important;
+
   @media (max-width: 768px) {
     background: transparent !important;
     box-shadow: none !important;
     border: none !important;
-    overflow: visible !important; // Allow scrolling of cards
 
     table {
       display: block;
@@ -42,6 +69,7 @@
       .mat-mdc-header-row {
         display: none;
       }
+
       tbody {
         display: block;
         background: transparent;
@@ -50,21 +78,22 @@
       .mat-mdc-row {
         display: flex;
         flex-direction: column;
-        background: white;
+        background: var(--bg-card);
         border-radius: 16px;
         margin-bottom: 1rem;
-        padding: 1rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        border: 1px solid $border-light;
+        padding: 1.5rem; // Increased padding
+        box-shadow: var(--shadow-card);
+        border: 1px solid var(--border-subtle);
         height: auto !important;
+        position: relative;
       }
 
       .mat-mdc-cell {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.75rem 0;
-        border-bottom: 1px solid #f1f5f9;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--border-subtle);
         font-size: 0.95rem;
 
         &:last-child {
@@ -75,36 +104,47 @@
         &.mat-column-name {
           padding-bottom: 1rem;
           margin-bottom: 0.5rem;
-          border-bottom: 2px solid $border-light;
+          border-bottom: 1px solid var(--border-subtle);
+
           .user-cell {
             width: 100%;
+            justify-content: flex-start;
           }
         }
+
         &.mat-column-actions {
-          position: absolute;
-          top: 1rem;
-          right: 0.5rem;
-          border: none;
-          padding: 0;
-          width: auto;
+          position: static;
+          /* Removed absolute positioning */
+          margin-top: 1rem;
+          padding-top: 1rem;
+          border-top: 1px dashed var(--border-subtle);
+          width: 100%;
+          justify-content: flex-end;
+          /* Align buttons to right */
+          gap: 0.5rem;
+          display: flex;
         }
 
         &.mat-column-email::before {
           content: "Email";
           @include mobile-label;
         }
+
         &.mat-column-phone::before {
           content: "Teléfono";
           @include mobile-label;
         }
+
         &.mat-column-type::before {
           content: "Tipo";
           @include mobile-label;
         }
+
         &.mat-column-status::before {
           content: "Estado";
           @include mobile-label;
         }
+
         &.mat-column-lastActivity::before {
           content: "Última Act.";
           @include mobile-label;
@@ -115,7 +155,15 @@
     ::ng-deep .mat-mdc-paginator-container {
       justify-content: center;
       flex-wrap: wrap;
-      background: transparent;
+      background: var(--bg-card); // Card background
+      border-radius: 50px; // Pill shape
+      margin-top: 1rem;
+      border: 1px solid var(--border-subtle);
+      padding: 0.5rem 1rem;
+    }
+
+    ::ng-deep .mat-mdc-paginator-range-label {
+      margin: 0 10px;
     }
   }
 }
@@ -123,14 +171,15 @@
 // --- TABLE STYLING ---
 table {
   width: 100%;
+  background: transparent;
 
   th.mat-mdc-header-cell {
     font-size: 0.85rem;
     font-weight: 700;
-    color: $color-indigo-700;
+    color: var(--text-secondary);
     text-transform: uppercase;
-    background: #f8fafc;
-    border-bottom: 1px solid $border-light;
+    background: var(--bg-surface-1);
+    border-bottom: 1px solid var(--border-subtle);
     padding: 1.5rem 1rem;
     position: sticky;
     top: 0;
@@ -138,17 +187,18 @@ table {
   }
 
   td.mat-mdc-cell {
-    color: $color-indigo-800;
+    color: var(--text-main);
     font-size: 0.95rem;
-    border-bottom: 1px solid $border-light;
+    border-bottom: 1px solid var(--border-subtle);
     padding: 1rem;
   }
 
   tr.clickable-row {
     transition: background 0.2s;
     cursor: pointer;
+
     &:hover {
-      background: #f1f5f9;
+      background: var(--bg-hover);
     }
   }
 }
@@ -158,6 +208,7 @@ table {
   display: flex;
   align-items: center;
   gap: 12px;
+
   .avatar {
     width: 40px;
     height: 40px;
@@ -169,16 +220,19 @@ table {
     justify-content: center;
     font-weight: 700;
   }
+
   .info {
     display: flex;
     flex-direction: column;
+
     .name {
       font-weight: 600;
-      color: $color-indigo-900;
+      color: var(--text-main);
     }
+
     .id-text {
       font-size: 0.75rem;
-      color: $color-slate-500;
+      color: var(--text-tertiary);
     }
   }
 }
@@ -189,17 +243,20 @@ table {
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
+
   &.inversionista {
     background: #fae8ff;
     color: #a855f7;
   }
+
   &.comprador {
     background: #dbeafe;
     color: #3b82f6;
   }
+
   &.prospecto {
-    background: #f1f5f9;
-    color: #64748b;
+    background: var(--bg-surface-1);
+    color: var(--text-secondary);
   }
 }
 
@@ -209,22 +266,27 @@ table {
   gap: 6px;
   font-size: 0.85rem;
   font-weight: 500;
+  color: var(--text-main);
+
   &::before {
     content: "";
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #cbd5e1;
+    background: var(--text-tertiary);
   }
+
   &.activo::before {
     background: $color-success;
     box-shadow: 0 0 0 2px rgba($color-success, 0.2);
   }
+
   &.vip::before {
     background: $color-warning;
     box-shadow: 0 0 0 2px rgba($color-warning, 0.2);
   }
+
   &.inactivo::before {
-    background: #94a3b8;
+    background: var(--text-tertiary);
   }
 }

@@ -10,18 +10,10 @@
 
     <!-- Botones Tablero/Lista -->
     <div class="btn-group">
-      <button
-        class="btn"
-        [class.active]="viewMode === 'board'"
-        (click)="viewMode = 'board'"
-      >
+      <button class="btn" [class.active]="viewMode === 'board'" (click)="viewMode = 'board'">
         <mat-icon class="icon-sm">view_week</mat-icon> Tablero
       </button>
-      <button
-        class="btn"
-        [class.active]="viewMode === 'list'"
-        (click)="viewMode = 'list'"
-      >
+      <button class="btn" [class.active]="viewMode === 'list'" (click)="viewMode = 'list'">
         <mat-icon class="icon-sm">list</mat-icon> Lista
       </button>
     </div>
@@ -39,26 +31,17 @@
       </div>
 
       <!-- Zona de Drop -->
-      <div
-        class="column-content"
-        cdkDropList
-        [cdkDropListData]="column.leads"
-        (cdkDropListDropped)="drop($event)"
-      >
+      <div class="column-content" cdkDropList [id]="column.id" [cdkDropListData]="column.leads"
+        (cdkDropListDropped)="drop($event)">
         @for (lead of column.leads; track lead.id) {
-        <div
-          class="lead-card"
-          [ngClass]="'status-' + lead.status"
-          cdkDrag
-          (click)="openLeadDetails(lead)"
-        >
+        <div class="lead-card" [ngClass]="'status-' + lead.status" cdkDrag (click)="openLeadDetails(lead)">
           <div class="card-title">{{ lead.title }}</div>
           <div class="card-subtitle">{{ lead.company }}</div>
 
           <div class="card-footer d-flex justify-content-center">
             <span class="value">{{
               lead.value | currency : "USD" : "symbol" : "1.2-2"
-            }}</span>
+              }}</span>
           </div>
         </div>
         }

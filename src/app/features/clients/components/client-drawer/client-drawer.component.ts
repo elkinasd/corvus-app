@@ -10,7 +10,7 @@ import {
   MatDialogRef,
   MatDialogModule,
 } from '@angular/material/dialog';
-import { Client } from '../../clients.component';
+import { Client } from '../../../../core/models/client.model';
 
 @Component({
   selector: 'app-client-drawer',

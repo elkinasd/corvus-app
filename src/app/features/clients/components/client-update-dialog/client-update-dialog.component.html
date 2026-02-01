@@ -1,328 +1,289 @@
-<div class="d-flex flex-column h-100 bg-white">
+<div class="d-flex flex-column h-100 overflow-hidden">
   <!-- HEADER -->
-  <div
-    class="dialog-header d-flex justify-content-between align-items-center p-4 shadow-sm z-3"
-  >
-    <h2 mat-dialog-title class="m-0 fs-4 fw-normal text-white">
-      Actualizar Cliente
-    </h2>
+  <div class="dialog-header d-flex justify-content-between align-items-center p-3 px-4 border-bottom">
+    <div class="d-flex align-items-center gap-2">
+      <h2 mat-dialog-title class="m-0 fs-5 fw-bold">Actualizar Cliente</h2>
+    </div>
     <button mat-icon-button (click)="close()">
       <mat-icon>close</mat-icon>
     </button>
   </div>
+
   <!-- CONTENT -->
-  <div class="dialog-content flex-grow-1 overflow-auto p-4 custom-scroll">
+  <div class="dialog-content flex-grow-1 overflow-auto p-4">
     <!-- PERSONAL INFO -->
-    <h3 class="section-title mb-4">Información Personal</h3>
-    <form [formGroup]="personalForm" class="d-flex flex-column gap-3">
-      <div class="row g-3">
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Nombres</mat-label>
-            <input matInput formControlName="firstName" />
-            <mat-error>Requerido</mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Apellidos</mat-label>
-            <input matInput formControlName="lastName" />
-            <mat-error>Requerido</mat-error>
-          </mat-form-field>
-        </div>
-      </div>
+    <div class="mb-4">
+      <h3 class="d-flex align-items-center gap-2 fs-6 text-primary fw-bold text-uppercase mb-3 border-bottom pb-2">
+        <mat-icon>perm_identity</mat-icon> Información Personal
+      </h3>
 
-      <div class="row g-3">
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Tipo Documento</mat-label>
-            <mat-select formControlName="documentType">
-              <mat-option value="CC">Cédula de Ciudadanía</mat-option>
-              <mat-option value="CE">Cédula de Extranjería</mat-option>
-              <mat-option value="NIT">NIT</mat-option>
-              <mat-option value="PASSPORT">Pasaporte</mat-option>
-            </mat-select>
-            <mat-error>Requerido</mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Número Documento</mat-label>
-            <input matInput formControlName="documentNumber" />
-            <mat-error>Requerido</mat-error>
-          </mat-form-field>
-        </div>
-      </div>
+      <form [formGroup]="personalForm">
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Nombres</mat-label>
+              <input matInput formControlName="firstName" />
+              <mat-error>Requerido</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Apellidos</mat-label>
+              <input matInput formControlName="lastName" />
+              <mat-error>Requerido</mat-error>
+            </mat-form-field>
+          </div>
 
-      <div class="row g-3">
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Fecha Expedición</mat-label>
-            <input
-              matInput
-              [matDatepicker]="pickerExp"
-              formControlName="expeditionDate"
-            />
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="pickerExp"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #pickerExp></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Lugar Expedición</mat-label>
-            <input matInput formControlName="expeditionPlace" />
-          </mat-form-field>
-        </div>
-      </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Tipo Documento</mat-label>
+              <mat-select formControlName="documentType">
+                <mat-option value="CC">Cédula de Ciudadanía</mat-option>
+                <mat-option value="CE">Cédula de Extranjería</mat-option>
+                <mat-option value="NIT">NIT</mat-option>
+                <mat-option value="PASSPORT">Pasaporte</mat-option>
+              </mat-select>
+              <mat-error>Requerido</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Número Documento</mat-label>
+              <input matInput formControlName="documentNumber" />
+              <mat-error>Requerido</mat-error>
+            </mat-form-field>
+          </div>
 
-      <div class="row g-3">
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Fecha Nacimiento</mat-label>
-            <input
-              matInput
-              [matDatepicker]="pickerBirth"
-              formControlName="birthDate"
-            />
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="pickerBirth"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #pickerBirth></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Lugar Nacimiento</mat-label>
-            <input matInput formControlName="birthPlace" />
-          </mat-form-field>
-        </div>
-      </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Fecha Expedición</mat-label>
+              <input matInput [matDatepicker]="pickerExp" formControlName="expeditionDate" />
+              <mat-datepicker-toggle matIconSuffix [for]="pickerExp"></mat-datepicker-toggle>
+              <mat-datepicker #pickerExp></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Lugar Expedición</mat-label>
+              <input matInput formControlName="expeditionPlace" />
+            </mat-form-field>
+          </div>
 
-      <div class="row g-3">
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Género</mat-label>
-            <mat-select formControlName="gender">
-              <mat-option value="Masculino">Masculino</mat-option>
-              <mat-option value="Femenino">Femenino</mat-option>
-              <mat-option value="Otro">Otro</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Estado Civil</mat-label>
-            <mat-select formControlName="civilStatus">
-              <mat-option value="Soltero">Soltero(a)</mat-option>
-              <mat-option value="Casado">Casado(a)</mat-option>
-              <mat-option value="UnionLibre">Unión Libre</mat-option>
-              <mat-option value="Divorciado">Divorciado(a)</mat-option>
-              <mat-option value="Viudo">Viudo(a)</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Fecha Nacimiento</mat-label>
+              <input matInput [matDatepicker]="pickerBirth" formControlName="birthDate" />
+              <mat-datepicker-toggle matIconSuffix [for]="pickerBirth"></mat-datepicker-toggle>
+              <mat-datepicker #pickerBirth></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Lugar Nacimiento</mat-label>
+              <input matInput formControlName="birthPlace" />
+            </mat-form-field>
+          </div>
 
-      <div class="row g-3">
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Dirección Residencia</mat-label>
-            <input matInput formControlName="address" />
-            <mat-error>Requerido</mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Ciudad / Municipio</mat-label>
-            <input matInput formControlName="city" />
-            <mat-error>Requerido</mat-error>
-          </mat-form-field>
-        </div>
-      </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Género</mat-label>
+              <mat-select formControlName="gender">
+                <mat-option value="Masculino">Masculino</mat-option>
+                <mat-option value="Femenino">Femenino</mat-option>
+                <mat-option value="Otro">Otro</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Estado Civil</mat-label>
+              <mat-select formControlName="civilStatus">
+                <mat-option value="Soltero">Soltero(a)</mat-option>
+                <mat-option value="Casado">Casado(a)</mat-option>
+                <mat-option value="UnionLibre">Unión Libre</mat-option>
+                <mat-option value="Divorciado">Divorciado(a)</mat-option>
+                <mat-option value="Viudo">Viudo(a)</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
 
-      <div class="row g-3">
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Teléfono / Celular</mat-label>
-            <input matInput formControlName="phone" />
-            <mat-error>Requerido</mat-error>
-          </mat-form-field>
+          <div class="col-12">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Dirección Residencia</mat-label>
+              <input matInput formControlName="address" />
+              <mat-error>Requerido</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Ciudad / Municipio</mat-label>
+              <input matInput formControlName="city" />
+              <mat-error>Requerido</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Teléfono / Celular</mat-label>
+              <input matInput formControlName="phone" />
+              <mat-error>Requerido</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-12">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Correo Electrónico</mat-label>
+              <input matInput formControlName="email" type="email" />
+              @if (personalForm.get('email')?.hasError('required')) {
+              <mat-error>Requerido</mat-error>
+              } @else if (personalForm.get('email')?.hasError('email')) {
+              <mat-error>Email inválido</mat-error>
+              }
+            </mat-form-field>
+          </div>
         </div>
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Correo Electrónico</mat-label>
-            <input matInput formControlName="email" type="email" />
-            @if (personalForm.get('email')?.hasError('required')) {
-            <mat-error>Requerido</mat-error>
-            } @else if (personalForm.get('email')?.hasError('email')) {
-            <mat-error>Email inválido</mat-error>
-            }
-          </mat-form-field>
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
 
     <!-- FINANCIAL INFO -->
-    <h3 class="section-title my-4">Información Financiera</h3>
-    <form [formGroup]="financialForm" class="d-flex flex-column gap-3">
-      <div class="row g-3">
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Ocupación / Oficio</mat-label>
-            <mat-select formControlName="laborStatus">
-              <mat-option value="Empleado">Empleado</mat-option>
-              <mat-option value="Independiente">Independiente</mat-option>
-              <mat-option value="Pensionado">Pensionado</mat-option>
-              <mat-option value="Estudiante">Estudiante</mat-option>
-              <mat-option value="Hogar">Hogar</mat-option>
-            </mat-select>
-            <mat-error>Requerido</mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Nombre Empresa</mat-label>
-            <input matInput formControlName="company" />
-          </mat-form-field>
-        </div>
-      </div>
+    <div class="mb-4">
+      <h3 class="d-flex align-items-center gap-2 fs-6 text-primary fw-bold text-uppercase mb-3 border-bottom pb-2">
+        <mat-icon>account_balance_wallet</mat-icon> Información Financiera
+      </h3>
 
-      <div class="row g-3">
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Cargo</mat-label>
-            <input matInput formControlName="position" />
-          </mat-form-field>
-        </div>
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Antigüedad</mat-label>
-            <input matInput formControlName="antiquity" />
-          </mat-form-field>
-        </div>
-      </div>
+      <form [formGroup]="financialForm">
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Ocupación / Oficio</mat-label>
+              <mat-select formControlName="laborStatus">
+                <mat-option value="Empleado">Empleado</mat-option>
+                <mat-option value="Independiente">Independiente</mat-option>
+                <mat-option value="Pensionado">Pensionado</mat-option>
+                <mat-option value="Estudiante">Estudiante</mat-option>
+                <mat-option value="Hogar">Hogar</mat-option>
+              </mat-select>
+              <mat-error>Requerido</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Nombre Empresa</mat-label>
+              <input matInput formControlName="company" />
+            </mat-form-field>
+          </div>
 
-      <div class="row g-3">
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Ingresos Mensuales</mat-label>
-            <input matInput type="number" formControlName="monthlyIncome" />
-            <span matTextPrefix>$&nbsp;</span>
-            <mat-error>Requerido</mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Otros Ingresos</mat-label>
-            <input matInput type="number" formControlName="otherIncome" />
-            <span matTextPrefix>$&nbsp;</span>
-          </mat-form-field>
-        </div>
-      </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Cargo</mat-label>
+              <input matInput formControlName="position" />
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Antigüedad</mat-label>
+              <input matInput formControlName="antiquity" />
+            </mat-form-field>
+          </div>
 
-      <div class="row g-3">
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Gastos Mensuales</mat-label>
-            <input matInput type="number" formControlName="monthlyExpenses" />
-            <span matTextPrefix>$&nbsp;</span>
-            <mat-error>Requerido</mat-error>
-          </mat-form-field>
-        </div>
-      </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Ingresos Mensuales</mat-label>
+              <input matInput type="number" formControlName="monthlyIncome" />
+              <span matTextPrefix>$&nbsp;</span>
+              <mat-error>Requerido</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Otros Ingresos</mat-label>
+              <input matInput type="number" formControlName="otherIncome" />
+              <span matTextPrefix>$&nbsp;</span>
+            </mat-form-field>
+          </div>
 
-      <div class="row g-3">
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Total Activos</mat-label>
-            <input matInput type="number" formControlName="assets" />
-            <span matTextPrefix>$&nbsp;</span>
-          </mat-form-field>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Gastos Mensuales</mat-label>
+              <input matInput type="number" formControlName="monthlyExpenses" />
+              <span matTextPrefix>$&nbsp;</span>
+              <mat-error>Requerido</mat-error>
+            </mat-form-field>
+          </div>
         </div>
-        <div class="col-md-6">
-          <mat-form-field class="w-100">
-            <mat-label>Total Pasivos</mat-label>
-            <input matInput type="number" formControlName="liabilities" />
-            <span matTextPrefix>$&nbsp;</span>
-          </mat-form-field>
+
+        <div class="row g-3 mt-1">
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Total Activos</mat-label>
+              <input matInput type="number" formControlName="assets" />
+              <span matTextPrefix>$&nbsp;</span>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Total Pasivos</mat-label>
+              <input matInput type="number" formControlName="liabilities" />
+              <span matTextPrefix>$&nbsp;</span>
+            </mat-form-field>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
 
     <!-- LEGAL INFO -->
-    <h3 class="section-title my-4">Información Legal y Declaraciones</h3>
-    <form [formGroup]="legalForm" class="d-flex flex-column gap-3">
-      <div class="col-12">
-        <mat-form-field class="w-100">
+    <div class="mb-4">
+      <h3 class="d-flex align-items-center gap-2 fs-6 text-primary fw-bold text-uppercase mb-3 border-bottom pb-2">
+        <mat-icon>security</mat-icon> Declaraciones Legales
+      </h3>
+
+      <form [formGroup]="legalForm">
+        <mat-form-field appearance="outline" class="w-100 mb-3">
           <mat-label>Origen de Fondos</mat-label>
           <textarea matInput formControlName="originFunds" rows="3"></textarea>
-          <mat-hint class="text-muted"
-            >Describa detalladamente el origen de los recursos.</mat-hint
-          >
+          <mat-hint>Describa detalladamente el origen de los recursos.</mat-hint>
           <mat-error>Requerido</mat-error>
         </mat-form-field>
-      </div>
 
-      <div class="row g-3 mt-2">
-        <div class="col-md-6">
-          <mat-checkbox formControlName="isPep" color="primary">
-            ¿Es una Persona Expuesta Políticamente (PEP)?
-          </mat-checkbox>
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-md-6">
+            <mat-checkbox formControlName="isPep" color="primary">
+              ¿Es PEP (Persona Políticamente Expuesta)?
+            </mat-checkbox>
+          </div>
+          <div class="col-12 col-md-6">
+            <mat-checkbox formControlName="hasForeignCurrency" color="primary">
+              ¿Realiza operaciones en moneda extranjera?
+            </mat-checkbox>
+          </div>
         </div>
-        <div class="col-md-6">
-          <mat-checkbox formControlName="hasForeignCurrency" color="primary">
-            ¿Realiza operaciones en moneda extranjera?
-          </mat-checkbox>
-        </div>
-      </div>
 
-      <div class="legal-check mt-4 p-4 row g-3">
-        <mat-checkbox
-          formControlName="dataTreatment"
-          color="primary"
-          class="col-12 mb-2"
-        >
-          Autorizo el tratamiento de mis datos personales conforme a la ley.
-        </mat-checkbox>
-        <div class="col-12 mt-0">
-          @if (legalForm.get('dataTreatment')?.hasError('required') &&
-          legalForm.get('dataTreatment')?.touched) {
-          <mat-error>Requerido</mat-error>
-          }
+        <div class="p-3 border rounded bg-opacity-10 bg-secondary">
+          <mat-checkbox formControlName="dataTreatment" color="primary" class="d-block mb-2">
+            Autorizo el tratamiento de mis datos personales conforme a la ley.
+          </mat-checkbox>
+          <mat-error
+            *ngIf="legalForm.get('dataTreatment')?.hasError('required') && legalForm.get('dataTreatment')?.touched">
+            Requerido
+          </mat-error>
+
+          <mat-checkbox formControlName="sarlaftCheck" color="primary" class="d-block">
+            Declaro que los recursos provienen de actividades lícitas (SARLAFT).
+          </mat-checkbox>
+          <mat-error
+            *ngIf="legalForm.get('sarlaftCheck')?.hasError('required') && legalForm.get('sarlaftCheck')?.touched">
+            Requerido
+          </mat-error>
         </div>
-        <mat-checkbox
-          formControlName="sarlaftCheck"
-          color="primary"
-          class="col-12 mb-2"
-        >
-          Declaro que los recursos provienen de actividades lícitas (SARLAFT).
-        </mat-checkbox>
-        <div class="col-12 mt-0">
-          @if (legalForm.get('sarlaftCheck')?.hasError('required') &&
-          legalForm.get('sarlaftCheck')?.touched) {
-          <mat-error>Requerido</mat-error>
-          }
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-  <div
-    class="dialog-footer d-flex justify-content-end gap-3 p-4 bg-white border-top"
-  >
-    <button
-      mat-flat-button
-      color="primary"
-      (click)="saveAll()"
-      [disabled]="
-        personalForm.invalid || financialForm.invalid || legalForm.invalid
-      "
-    >
-      Guardar Cambios
+
+  <div class="dialog-footer d-flex justify-content-end gap-3 p-3 px-4 border-top">
+    <button mat-button (click)="close()">Cancelar</button>
+    <button mat-flat-button color="primary" (click)="saveAll()"
+      [disabled]="personalForm.invalid || financialForm.invalid || legalForm.invalid">
+      <mat-icon>save</mat-icon> Guardar Cambios
     </button>
-    <button class="btn-cancel" mat-button (click)="close()">Cancelar</button>
   </div>
 </div>

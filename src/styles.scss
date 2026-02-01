@@ -5,6 +5,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -16,24 +17,120 @@ body {
 .w-full {
   width: 100%;
 }
+
 .h-full {
   height: 100%;
 }
 
+// --- GLOBAL SCROLLBAR ---
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.5); // Slate 400 with opacity
+  border-radius: 10px;
+
+  &:hover {
+    background: rgba(148, 163, 184, 0.8);
+  }
+}
+
+// Firefox support
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.5) transparent;
+}
+
 // --- PREMIUM MODAL OVERRIDES (Global) ---
-  .premium-modal-panel {
-  // 1. Remove the default border radius if you want a super sleek look,
-  // or keep it but ensure overflow is managed.
+// --- PREMIUM MODAL OVERRIDES (Global) ---
+// --- PREMIUM MODAL OVERRIDES (Global) ---
+.premium-modal-panel {
+  // Styles for the container (overlay pane wrapper)
+  // Angular Material sets width on the overlay pane, not here.
+
   .mat-mdc-dialog-container {
-    padding: 0 !important; // Kill default padding
-    border-radius: 16px !important; // Premium rounded corners
+    padding: 0 !important;
+    border-radius: 20px !important;
+    // background is handled by the surface usually, but let's set it here too
+    background-color: var(--bg-card) !important;
   }
 
-  // 2. Ensure the content inside takes full height so our custom scroll works
   .mat-mdc-dialog-surface {
     display: flex;
     flex-direction: column;
     height: 100%;
+    // Remove hardcoded gradient
+    background: var(--bg-card) !important;
+    color: var(--text-main) !important;
+    box-shadow: var(--shadow-card) !important;
+  }
+
+  // Titles
+  .mat-mdc-dialog-title {
+    color: var(--text-main) !important;
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    padding: 24px 24px 12px 24px !important;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary, #6366f1), var(--color-primary-light, #818cf8));
+      border-radius: 2px;
+      margin-bottom: 12px;
+    }
+  }
+
+  // Content
+  .mat-mdc-dialog-content {
+    padding: 0 24px 24px 24px !important;
+  }
+
+  // Actions
+  .mat-mdc-dialog-actions {
+    padding: 16px 24px !important;
+    border-top: 1px solid var(--border-subtle);
+    background: var(--bg-surface-1);
+    margin-bottom: 0 !important;
+  }
+
+  // Form Fields Overrides for Theme Adaptability
+  .mat-mdc-form-field {
+    .mat-mdc-text-field-wrapper {
+      background-color: var(--bg-input) !important;
+    }
+
+    .mat-mdc-form-field-focus-overlay {
+      // subtle overlay on focus
+      background-color: rgba(var(--color-primary-rgb), 0.05) !important;
+    }
+
+    .mat-mdc-floating-label {
+      color: var(--text-secondary) !important;
+    }
+
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing {
+      border-color: var(--color-primary) !important;
+    }
+
+    .mat-mdc-input-element {
+      color: var(--text-main) !important;
+      caret-color: var(--color-primary) !important;
+    }
+
+    .mat-icon {
+      color: var(--text-tertiary) !important;
+    }
   }
 }
 
@@ -41,6 +138,7 @@ body {
 // This fixes the transparent/unstyled DatePicker and Select dropdowns
 // by forcibly mapping them to our Kanto Theme Variables.
 .cdk-overlay-pane {
+
   // 1. Selects, Menus, Autocomplete
   .mat-mdc-select-panel,
   .mat-mdc-menu-panel,
@@ -52,10 +150,12 @@ body {
 
     .mat-mdc-option {
       color: var(--text-main) !important;
+
       &:hover,
       &.mat-mdc-option-active {
         background-color: var(--bg-hover) !important;
       }
+
       .mat-mdc-option-pseudo-checkbox {
         color: var(--text-secondary);
       }
@@ -72,10 +172,12 @@ body {
     // Header (Month/Year)
     .mat-calendar-header {
       color: var(--text-main);
+
       .mat-calendar-controls {
         .mat-calendar-arrow {
           fill: var(--text-secondary);
         }
+
         .mat-icon-button {
           color: var(--text-secondary);
         }
@@ -87,12 +189,15 @@ body {
       .mat-calendar-table-header th {
         color: var(--text-tertiary);
       }
+
       .mat-calendar-body-cell-content {
         color: var(--text-main);
+
         &:hover {
           background-color: var(--bg-hover);
         }
       }
+
       // Selected date
       .mat-calendar-body-selected {
         background-color: var(--color-info); // Cyan
