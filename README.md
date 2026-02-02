@@ -53,6 +53,17 @@ src/app/
 - **Lenguaje**: TypeScript 5.9.3
 - **Estilos**: SCSS Modular
 
+- **Estilos**: SCSS Modular
+
+### 4. Convención de Modelos de Datos (Feb 2026)
+
+Para mantener una arquitectura semántica y limpia, distinguimos estrictamente entre definiciones de datos y lógica de negocio:
+
+- **Interfaces (`*.interface.ts`)**: Definen la **forma** de los datos (Contratos). Son puramente estructurales y no contienen lógica. Se usan para tipar respuestas de API y props de componentes.
+  - *Ejemplo*: `lead.interface.ts`, `client.interface.ts`
+- **Modelos (`*.model.ts`)**: Clases que instancian datos y contienen **lógica de negocio**, métodos, getters o validaciones internas.
+  - *Uso*: Solo crear archivos `.model.ts` si se requiere instanciar objetos con comportamiento (`new LeadModel(...)`).
+
 ---
 
 ## 🎨 Sistema de Diseño (Codename: Kanto)
@@ -200,3 +211,27 @@ $status-won-bg: rgba($color-viridian-500, 0.2);
   - Se eliminó el 90% del CSS personalizado del componente.
   - Se migró a clases de utilidad de **Bootstrap** (`d-flex`, `gap-3`, `row/col`) para el layout, manteniendo la mantenibilidad extrema.
 - **Flexbox Layouts V3**: Corrección definitiva de "sticky footers" y headers en modales, asegurando que solo el contenido central sea scrolleable.
+
+### 🏛️ Refactorización de Arquitectura - Febrero 2026
+
+**1. Definición Semántica de Datos**
+
+- **Migración de Modelos a Interfaces**: Reestructuración del núcleo de datos (`core/models`).
+  - Se renombraron archivos físicos para reflejar su naturaleza real. Los archivos que solo contenían definiciones de tipos (`export interface`) pasaron de `*.model.ts` a `*.interface.ts`.
+  - **Objetivo**: Evitar ambigüedad. Reservar el término "Modelo" para clases con lógica de negocio real y usar "Interfaz" para contratos de datos puros.
+
+**2. Optimización UX/UI y Arquitectura de Estilos**
+
+- **Grid Responsive en Proyectos**:
+  - Implementación de **Grid CSS moderna** (`auto-fit`) en la vista de detalle de proyectos.
+  - **Eliminación del Scroll Horizontal**: Las torres ahora fluyen naturalmente ocupando el 100% del ancho disponible, adaptándose a cualquier pantalla.
+  - **Grid de Unidades**: Ajuste a **5 columnas** fijas por piso para mejor legibilidad.
+  - **Control de Desbordamiento**: Implementación de `text-overflow: ellipsis` y `min-width: 0` para evitar que precios largos rompan la maquetación en tarjetas pequeñas.
+
+- **Estilización de Navegación**:
+  - Rediseño del botón "Atrás": Ahora usa estilos `mat-button` con iconografía y estados `hover` premium que respetan el tema activo.
+
+- **Arquitectura SCSS Refinada**:
+  - Configuración de `stylePreprocessorOptions` en `angular.json` para permitir rutas absolutas (`src/styles`).
+  - Estandarización de imports: Uso de `@use 'variables' as *;` para un acceso limpio a los tokens de diseño.
+

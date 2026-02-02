@@ -50,12 +50,27 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'sales',
-        loadComponent: () =>
-          import('./features/sales/sales.component').then(
-            (m) => m.SalesComponent
-          ),
+        path: 'projects',
+        children: [
+          {
+            path: '',
+            loadComponent: () => import('./features/projects/components/project-list/project-list.component').then(m => m.ProjectListComponent)
+          },
+          {
+            path: 'new',
+            title: 'Nuevo Proyecto',
+            loadComponent: () => import('./features/projects/components/project-wizard/project-wizard.component').then(m => m.ProjectWizardComponent)
+          },
+          {
+            path: ':id',
+            loadComponent: () => import('./features/projects/pages/project-detail/project-detail.component').then(m => m.ProjectDetailComponent)
+          }
+        ]
       },
+      // { // Ventas movido a Proyectos
+      //   path: 'sales/:id', 
+      //   loadComponent: () => import('./features/sales/sales.component').then(m => m.SalesComponent)
+      // },
       {
         path: 'clients',
         loadComponent: () =>

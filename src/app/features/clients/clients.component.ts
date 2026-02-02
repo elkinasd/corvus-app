@@ -22,7 +22,7 @@ import { ClientDialogComponent } from './components/client-dialog/client-dialog.
 import { ClientDrawerComponent } from './components/client-drawer/client-drawer.component';
 import { ClientUpdateDialogComponent } from './components/client-update-dialog/client-update-dialog.component';
 import { ClientsService } from '../../core/services/clients.service';
-import { Client } from '../../core/models/client.model';
+import { Client } from '../../core/models/client.interface';
 
 @Component({
   selector: 'app-clients',

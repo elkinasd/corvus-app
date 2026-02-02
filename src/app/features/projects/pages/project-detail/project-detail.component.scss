@@ -1,0 +1,175 @@
+@use "variables" as *;
+
+// === CONTENEDOR PRINCIPAL ===
+.sales-container {
+    padding: 1.5rem 2rem;
+    min-height: calc(100vh - 70px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    .title-text {
+        color: var(--text-main);
+        letter-spacing: -0.5px;
+    }
+
+    .subtitle-text {
+        color: var(--text-tertiary);
+    }
+
+    .back-btn {
+        background: var(--bg-surface-1) !important;
+        align-self: flex-start;
+        margin-bottom: 0.5rem;
+        color: var(--text-secondary) !important;
+        border: 1px solid var(--border-subtle);
+        border-radius: 12px;
+        background-color: var(--bg-surface-1);
+        padding: 0 24px 0 16px;
+        height: 42px;
+        font-weight: 500;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        display: inline-flex;
+        align-items: center;
+
+        mat-icon {
+            margin-right: 8px;
+            font-size: 20px;
+            width: 20px;
+            height: 20px;
+            transition: transform 0.2s ease;
+        }
+
+        &:hover {
+            background-color: var(--bg-card);
+            color: var(--text-main) !important;
+            border-color: var(--text-tertiary);
+            transform: translateX(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+            mat-icon {
+                transform: translateX(-4px);
+            }
+        }
+    }
+}
+
+// === GRID DE TORRES ===
+.towers-grid {
+    display: grid;
+    // Responsive grid: min 350px per tower, auto-fill remaining space
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    align-items: start;
+}
+
+.tower-card {
+    background: var(--bg-surface-1);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    // Removed fixed min-width to let grid handle it
+    width: 100%;
+    min-width: 0; // Prevent grid blowout
+    display: flex;
+    flex-direction: column;
+
+    .tower-header {
+        padding: 1rem;
+        border-bottom: 1px solid var(--border-subtle);
+        background: var(--bg-card);
+        border-radius: 12px 12px 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h3 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+    }
+
+    .tower-body {
+        padding: 1rem;
+        background: var(--bg-card);
+        border-radius: 0 0 12px 12px;
+        overflow-x: hidden; // Prevent horizontal scroll on body
+    }
+}
+
+// === UNIDADES (GRID) ===
+.floors-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); // 5 aptos por piso como solicitado
+    gap: 4px; // Tighten gap to fit 5 cols
+}
+
+.unit-cell {
+    aspect-ratio: 1; // Cuadradito
+    border-radius: 6px;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 2px; // Reduced padding
+    overflow: hidden; // Clip content
+
+    // Tipografía
+    .unit-number {
+        font-weight: 700;
+        font-size: 0.85rem;
+    }
+
+    .unit-price {
+        font-size: 0.65rem;
+        font-weight: 500;
+        opacity: 0.8;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+    }
+
+    .unit-status-label {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        opacity: 0.8;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+        z-index: 10;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+}
+
+// === RESUMEN STATS ===
+.stat-badge {
+    background: var(--bg-surface-1);
+    border: 1px solid var(--border-subtle);
+    padding: 4px 12px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+
+    .value {
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--text-main);
+    }
+
+    .label {
+        font-size: 0.7rem;
+        color: var(--text-tertiary);
+        text-transform: uppercase;
+    }
+}

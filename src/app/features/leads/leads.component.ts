@@ -14,7 +14,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ClientDialogComponent } from '../clients/components/client-dialog/client-dialog.component';
 import { AdminGuardDialogComponent } from './components/admin-guard-dialog/admin-guard-dialog.component';
 import { ClientsService } from '../../core/services/clients.service';
-import { Column, Lead, TimelineEvent } from '../../core/models/lead.model';
+import { Column, Lead, TimelineEvent } from '../../core/models/lead.interface';
 import { LeadsService } from '../../core/services/leads.service';
 import { LeadDrawerComponent } from './components/lead-drawer/lead-drawer.component';
 
@@ -194,5 +194,20 @@ export class LeadsComponent {
   // Helper para obtener todos los leads en una sola lista plana
   getAllLeads(): Lead[] {
     return this.columns.flatMap((col) => col.leads);
+  }
+
+  getDaysActive(date: Date | undefined): number {
+    if (!date) return 0;
+    const now = new Date();
+    const created = new Date(date);
+    const diffTime = Math.abs(now.getTime() - created.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
+  }
+
+  getActiveColor(days: number): string {
+    if (days <= 1) return 'var(--color-success)'; // Verde (< 1 día o hoy)
+    if (days <= 3) return 'var(--color-warning)'; // Naranja (2-3 días)
+    return 'var(--color-danger)'; // Rojo (> 3 días)
   }
 }

@@ -11,12 +11,7 @@
 
   <mat-nav-list class="nav-menu">
     @for (item of menuItems; track item.route) {
-    <a
-      mat-list-item
-      [routerLink]="item.route"
-      routerLinkActive="active"
-      class="nav-item"
-    >
+    <a mat-list-item [routerLink]="item.route" routerLinkActive="active" class="nav-item">
       <mat-icon matListItemIcon class="nav-icon">{{ item.icon }}</mat-icon>
       <span matListItemTitle class="nav-label">{{ item.label }}</span>
     </a>

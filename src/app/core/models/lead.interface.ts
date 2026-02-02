@@ -11,6 +11,8 @@ export interface Lead {
   id: string;
   title: string;
   company?: string;
+  description?: string;
+  createdAt?: Date;
   value?: number;
   status:
     | 'new'

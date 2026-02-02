@@ -1,0 +1,190 @@
+    .drawer-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(2px);
+        z-index: 1000;
+        animation: fadeIn 0.2s;
+    }
+
+    .drawer-panel {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 400px;
+        background: var(--bg-card);
+        z-index: 1001;
+        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        border-left: 1px solid var(--border-subtle);
+    }
+
+    .drawer-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border-subtle);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+    }
+
+    .drawer-body {
+        padding: 1.5rem;
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    .info-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .info-row {
+        display: flex;
+        gap: 1rem;
+
+        .info-item {
+            flex: 1;
+        }
+    }
+
+    .info-item {
+        label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .value-lg {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-success);
+        }
+    }
+
+    .drawer-footer {
+        padding: 1.5rem;
+        border-top: 1px solid var(--border-subtle);
+        background: var(--bg-surface-1);
+    }
+
+    .badge {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-weight: 700;
+
+        &.bg-success-subtle {
+            background-color: rgba(var(--color-success-rgb), 0.1);
+            color: var(--color-success);
+            border: 1px solid var(--color-success);
+        }
+
+        &.bg-danger-subtle {
+            background-color: rgba(var(--color-danger-rgb), 0.1);
+            color: var(--color-danger);
+            border: 1px solid var(--color-danger);
+        }
+
+        &.bg-warning-subtle {
+            background-color: rgba(var(--color-warning-rgb), 0.1);
+            color: var(--color-warning);
+            border: 1px solid var(--color-warning);
+        }
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+        }
+
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .btn-icon {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: var(--text-tertiary);
+
+        &:hover {
+            color: var(--text-main);
+        }
+    }
+
+    .section-label {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .specs-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            .icon-tiny {
+                font-size: 16px;
+                width: 16px;
+                height: 16px;
+                color: var(--color-success);
+            }
+        }
+    }
+
+    .dim-badge {
+        background: var(--bg-surface-1);
+        font-size: 0.75rem;
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: var(--text-tertiary);
+        margin-left: auto;
+    }

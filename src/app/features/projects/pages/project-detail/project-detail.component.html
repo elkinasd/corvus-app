@@ -1,0 +1,53 @@
+@if (project$ | async; as project) {
+<div class="sales-container">
+  <!-- Header del Proyecto -->
+  <div class="d-flex justify-content-between align-items-end mb-2">
+    <div>
+      <h1 class="title-text">{{ project.name }}</h1>
+      <p class="subtitle-text">{{ project.city }} | {{ project.type }}</p>
+    </div>
+
+  </div>
+  <button mat-button class="back-btn" (click)="back()">
+    <mat-icon>arrow_back</mat-icon>
+    Atrás
+  </button>
+  <!-- INVENTARIO POR TORRES -->
+  <div class="towers-grid">
+    @for (tower of project.towers; track tower.id) {
+    <div class="tower-card">
+      <div class="tower-header">
+        <h3>{{ tower.name }}</h3>
+        <span class="badge text-bg-light">{{ tower.floors }} Pisos</span>
+      </div>
+
+      <div class="tower-body">
+        <!-- Pisos desde arriba hacia abajo -->
+        <!-- Nota: Idealmente haríamos un pipe para sort, pero por ahora asumimos orden -->
+        <!-- Hack visual: Flex-col-reverse si el array viene 1..5 -->
+        <div class="floors-container">
+          @for (unit of tower.units; track unit.id) {
+          <!-- Esto es simplificado. Lo ideal es agrupar por pisos. 
+                         Como el mock devuelve un flat array, usaremos CSS Grid auto-fill -->
+          <button class="unit-cell" [ngClass]="getStatusClass(unit.status)" (click)="onUnitClick(unit)">
+            <span class="unit-number">{{ unit.number }}</span>
+
+            @if (unit.status === 'available') {
+            <span class="unit-price">{{ unit.price | currency:'USD':'symbol':'1.0-0' }}</span>
+            } @else {
+            <span class="unit-status-label">{{ unit.status }}</span>
+            }
+          </button>
+          }
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+}
+
+@if (selectedUnit) {
+<app-unit-drawer [unit]="selectedUnit" (close)="selectedUnit = null">
+</app-unit-drawer>
+}

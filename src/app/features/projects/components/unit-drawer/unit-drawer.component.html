@@ -1,0 +1,86 @@
+<div class="drawer-backdrop" (click)="close.emit()"></div>
+<div class="drawer-panel">
+    <!-- Header -->
+    <div class="drawer-header">
+        <div>
+            <h2 class="mb-1">Apto {{ unit.number }}</h2>
+            <span class="badge" [ngClass]="getStatusClass(unit.status)">
+                {{ unit.status === 'sold' ? 'VENDIDO' : unit.status === 'reserved' ? 'RESERVADO' : 'DISPONIBLE' }}
+            </span>
+        </div>
+        <button class="btn-icon" (click)="close.emit()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <!-- Info Principal -->
+    <div class="drawer-body">
+        <div class="info-grid">
+            <div class="info-item">
+                <label>Precio de Lista</label>
+                <div class="value-lg">{{ unit.price | currency:'USD':'symbol':'1.0-0' }}</div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-item">
+                    <label>Modelo</label>
+                    <div class="value">{{ unit.model.name }}</div>
+                </div>
+                <!-- TODO: Orientation? -->
+            </div>
+
+            <div class="info-row">
+                <div class="info-item">
+                    <label>Área Construida</label>
+                    <div class="value">{{ unit.model.areaTotal }} m²</div>
+                </div>
+                <div class="info-item">
+                    <label>Área Privada</label>
+                    <div class="value">{{ unit.model.areaPrivate }} m²</div>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-item">
+                    <label>Piso</label>
+                    <div class="value">{{ unit.floor }}</div>
+                </div>
+                <div class="info-item">
+                    <label>Torre</label>
+                    <div class="value">Torre {{ unit.towerId === 't-1' ? 'A' : 'B' }}</div>
+                </div>
+            </div>
+
+            <!-- DISTRIBUCIÓN -->
+            <div class="distribution-section mt-3">
+                <label class="section-label">Distribución & Espacios</label>
+                <ul class="specs-list">
+                    @for (spec of unit.model.distribution; track spec.name) {
+                    <li>
+                        <mat-icon class="icon-tiny">check_circle</mat-icon>
+                        <span>{{ spec.name }}</span>
+                        @if (spec.dim) { <span class="dim-badge">{{ spec.dim }}</span> }
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Acciones de Venta -->
+    <div class="drawer-footer">
+        @if (unit.status === 'available') {
+        <button class="btn btn-primary w-100">
+            <mat-icon>attach_money</mat-icon> Iniciar Separación
+        </button>
+        <button class="btn btn-outline-secondary w-100 mt-2">
+            <mat-icon>bookmark_border</mat-icon> Reservar
+        </button>
+        } @else {
+        <div class="alert alert-info">
+            Este inmueble ya se encuentra en proceso.
+            <!-- Aquí iría link a ver el negocio -->
+        </div>
+        }
+    </div>
+</div>

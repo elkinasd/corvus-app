@@ -1,0 +1,174 @@
+<div class="wizard-container">
+    <div class="wizard-card">
+        <!-- HEADER / STEPPER -->
+        <div class="wizard-header">
+            <h2 class="wizard-title">Configurador de Proyecto</h2>
+            <div class="stepper-indicator">
+                <div class="step" [class.active]="currentStep >= 1">1. General</div>
+                <div class="line" [class.active]="currentStep >= 2"></div>
+                <div class="step" [class.active]="currentStep >= 2">2. Tipologías</div>
+                <div class="line" [class.active]="currentStep >= 3"></div>
+                <div class="step" [class.active]="currentStep >= 3">3. Estructura</div>
+            </div>
+        </div>
+
+        <form [formGroup]="projectForm" class="wizard-body">
+
+            <!-- ====== STEP 1: DATOS GENERALES ====== -->
+            @if (currentStep === 1) {
+            <div formGroupName="general" class="step-content fade-in">
+                <h3>Información Clave</h3>
+                <p class="step-desc">Define el marco legal y ubicación.</p>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Nombre del Proyecto</label>
+                        <input type="text" formControlName="name" placeholder="Ej: Ciudadela Corvus">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tipo de Proyecto</label>
+                        <select formControlName="type">
+                            <option value="VIS">VIS (Interés Social)</option>
+                            <option value="NO-VIS">No VIS / Premium</option>
+                            <option value="VIP">VIP (Prioritario)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ciudad</label>
+                        <input type="text" formControlName="city" placeholder="Ej: Medellín">
+                    </div>
+
+                    @if (generalGroup.get('type')?.value === 'VIS') {
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" formControlName="isBigCity">
+                            <div class="text">
+                                <span>Aglomeración > 1M Habitantes</span>
+                                <small class="text-xs text-secondary">Aplica tope de 150 SMMLV</small>
+                            </div>
+                        </label>
+                    </div>
+                    }
+                </div>
+            </div>
+            }
+
+            <!-- ====== STEP 2: TIPOLOGÍAS ====== -->
+            @if (currentStep === 2) {
+            <div class="step-content fade-in">
+                <div class="flex-between mb-4">
+                    <div>
+                        <h3>Definición de Tipologías</h3>
+                        <p class="step-desc">Crea los "moldes" de los apartamentos.</p>
+                    </div>
+                </div>
+
+                <div formArrayName="models" class="models-list">
+                    @for (model of modelsArray.controls; track $index) {
+                    <div [formGroupName]="$index" class="model-card">
+                        <div class="model-header">
+                            <span class="model-badge">Modelo {{ $index + 1 }}</span>
+                            @if(modelsArray.length > 1) {
+                            <button class="btn-icon danger" (click)="removeModel($index)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            }
+                        </div>
+
+                        <div class="inputs-row">
+                            <div class="form-group">
+                                <label>Nombre Ref.</label>
+                                <input type="text" formControlName="name" placeholder="Ej: Tipo A">
+                            </div>
+                            <div class="form-group">
+                                <label>Área Total (m²)</label>
+                                <input type="number" formControlName="areaTotal">
+                            </div>
+                            <div class="form-group">
+                                <label>Área Privada (m²)</label>
+                                <input type="number" formControlName="areaPrivate">
+                            </div>
+
+                            @if (generalGroup.get('type')?.value === 'VIS') {
+                            <div class="form-group">
+                                <label>Precio (SMMLV)</label>
+                                <input type="number" formControlName="priceSmmlv">
+                            </div>
+                            } @else {
+                            <div class="form-group wide">
+                                <label>Precio Lista ($)</label>
+                                <input type="number" formControlName="priceManual">
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    }
+                </div>
+
+                <button class="btn-dashed w-full mt-3" (click)="addModel()">
+                    <mat-icon>add</mat-icon> Agregar Nueva Tipología
+                </button>
+            </div>
+            }
+
+            <!-- ====== STEP 3: ESTRUCTURA ====== -->
+            @if (currentStep === 3) {
+            <div formGroupName="structure" class="step-content fade-in">
+                <h3>La Matriz</h3>
+                <p class="step-desc">Define la estructura física. El sistema repartirá las tipologías equitativamente
+                    por ahora.</p>
+
+                <div class="structure-inputs">
+                    <div class="input-block">
+                        <label>Torres</label>
+                        <input type="number" formControlName="towersCount" min="1">
+                    </div>
+                    <div class="multiplier">×</div>
+                    <div class="input-block">
+                        <label>Pisos / Torre</label>
+                        <input type="number" formControlName="floorsPerTower" min="1">
+                    </div>
+                    <div class="multiplier">×</div>
+                    <div class="input-block">
+                        <label>Aptos / Piso</label>
+                        <input type="number" formControlName="unitsPerFloor" min="1">
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <mat-icon>auto_awesome</mat-icon>
+                    <div>
+                        <strong>Generación Automática:</strong>
+                        <p>Se crearán <strong>{{ (structureGroup.get('towersCount')?.value || 0) *
+                                (structureGroup.get('floorsPerTower')?.value || 0) *
+                                (structureGroup.get('unitsPerFloor')?.value || 0) }}</strong> unidades.</p>
+                        <p class="text-xs">Los modelos (Tipologías) se asignarán secuencialmente (1=A, 2=B...) para
+                            facilitar la configuración inicial.</p>
+                    </div>
+                </div>
+            </div>
+            }
+
+        </form>
+
+        <!-- FOOTER ACTIONS -->
+        <div class="wizard-footer">
+            @if (currentStep > 1) {
+            <button class="btn btn-secondary" (click)="prevStep()">Atrás</button>
+            } @else {
+            <button class="btn btn-secondary" routerLink="/sales">Cancelar</button>
+            }
+
+            @if (currentStep < totalSteps) { <button class="btn btn-primary" (click)="nextStep()">
+                Siguiente <mat-icon>arrow_forward</mat-icon>
+                </button>
+                } @else {
+                <button class="btn btn-success" (click)="generateProject()" [disabled]="projectForm.invalid">
+                    <mat-icon>check</mat-icon> Crear Proyecto
+                </button>
+                }
+        </div>
+    </div>
+</div>

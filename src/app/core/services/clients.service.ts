@@ -1,5 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { Client } from '../models/client.model';
+import { Client } from '../models/client.interface';
 
 @Injectable({
     providedIn: 'root',

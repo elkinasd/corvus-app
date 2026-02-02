@@ -1,0 +1,32 @@
+<div class="projects-container">
+    <div class="header">
+        <!-- Título removido por redundancia con el menú -->
+        <div class="spacer"></div>
+        <button class="btn btn-primary" (click)="createProject()">
+            <mat-icon>add</mat-icon> Nuevo Proyecto
+        </button>
+    </div>
+
+    <div class="projects-grid">
+        @for (project of projects; track project.id) {
+        <div class="project-card" (click)="openProject(project.id)">
+            <div class="card-image">
+                <mat-icon class="icon-lg">apartment</mat-icon>
+            </div>
+            <div class="card-content">
+                <h3>{{ project.name }}</h3>
+                <p class="location">{{ project.city }}</p>
+
+                <div class="stats-row">
+                    <span class="badge">{{ project.type }}</span>
+                    <span class="units">{{ project.specs.totalUnits }} Unidades</span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="status-indicator active">Activo</span>
+                <mat-icon class="arrow">arrow_forward</mat-icon>
+            </div>
+        </div>
+        }
+    </div>
+</div>

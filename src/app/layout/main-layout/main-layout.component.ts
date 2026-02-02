@@ -22,17 +22,17 @@ export class MainLayoutComponent {
     this.breakpointObserver
       .observe([Breakpoints.Handset, Breakpoints.TabletPortrait])
       .pipe(map((result) => result.matches)),
-    { initialValue: false }
+    { initialValue: true }
   );
 
-  isSidenavOpened = signal(true);
+  isSidenavOpened = signal(false);
 
   constructor() {
     effect(() => {
       if (this.isMobile()) {
         this.isSidenavOpened.set(false);
       } else {
-        this.isSidenavOpened.set(false);
+        this.isSidenavOpened.set(true);
       }
     });
 

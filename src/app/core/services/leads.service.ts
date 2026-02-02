@@ -1,5 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { Column, Lead, TimelineEvent } from '../models/lead.model';
+import { Column, Lead, TimelineEvent } from '../models/lead.interface';
 
 @Injectable({
     providedIn: 'root',
@@ -15,8 +15,10 @@ export class LeadsService {
                     id: '1',
                     title: 'Zelda Villalobos',
                     company: 'Residencial Norte',
+                    description: 'Interesada en apartamento de 3 habitaciones en zona norte.',
                     value: 5000,
                     status: 'new',
+                    createdAt: new Date(),
                     lastActivity: new Date(),
                     timeline: [
                         {
@@ -32,15 +34,19 @@ export class LeadsService {
                     id: '2',
                     title: 'Tathiana Bermúdez',
                     company: 'Remodelación Cocina',
+                    description: 'Busca renovar cocina integral, estilo moderno.',
                     value: 12000,
                     status: 'new',
+                    createdAt: new Date(new Date().setDate(new Date().getDate() - 2)), // 2 days ago
                 },
                 {
                     id: '101',
                     title: 'Constructora Beta',
                     company: 'Lote Campestre',
+                    description: 'Constructora buscando lotes para desarrollo.',
                     value: 85000,
                     status: 'new',
+                    createdAt: new Date(new Date().setDate(new Date().getDate() - 4)), // 4 days ago
                 },
                 {
                     id: '102',

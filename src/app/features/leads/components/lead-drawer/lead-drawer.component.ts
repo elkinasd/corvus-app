@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Lead, TimelineEvent } from '../../../../core/models/lead.model';
+import { Lead, TimelineEvent } from '../../../../core/models/lead.interface';
 
 @Component({
   selector: 'app-lead-drawer',
