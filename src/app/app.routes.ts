@@ -67,10 +67,10 @@ export const routes: Routes = [
           }
         ]
       },
-      // { // Ventas movido a Proyectos
-      //   path: 'sales/:id', 
-      //   loadComponent: () => import('./features/sales/sales.component').then(m => m.SalesComponent)
-      // },
+      {
+        path: 'sales',
+        loadComponent: () => import('./features/sales/sales.component').then(m => m.SalesComponent)
+      },
       {
         path: 'clients',
         loadComponent: () =>

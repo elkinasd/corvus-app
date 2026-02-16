@@ -1,0 +1,203 @@
+.search-container {
+    position: relative;
+    max-width: 100%;
+    font-family: 'Inter', sans-serif;
+}
+
+.search-display {
+    display: flex;
+    margin-top: 5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+
+    .empty-icon {
+        margin-bottom: 24px;
+
+        svg {
+            width: 80px;
+            height: 80px;
+        }
+    }
+
+    h2 {
+        font-family: 'CIB Sans', 'Inter', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        line-height: 32px;
+        color: #202124;
+        margin-bottom: 12px;
+    }
+
+    p {
+        font-family: 'Open Sans', sans-serif;
+        color: #5f6368;
+        font-size: 16px;
+        line-height: 24px;
+        max-width: 600px;
+        text-align: center;
+    }
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    /* Card rounded corners */
+    padding: 24px;
+    /* Espacio interno amplio */
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.2s;
+
+    &:hover,
+    &:focus-within {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    // Contenedor interno para el input underline
+    .input-wrapper {
+        position: relative;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #999;
+        /* Línea base gris */
+        padding-bottom: 8px;
+        transition: border-bottom-color 0.2s;
+
+        &:focus-within {
+            border-bottom-color: #000;
+            /* Línea activa negra */
+        }
+    }
+
+    .search-input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: #333;
+        font-size: 16px;
+        outline: none;
+        padding-right: 12px;
+
+        &::placeholder {
+            color: #757575;
+        }
+
+        &:disabled {
+            color: #9aa0a6;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+    }
+
+    .icon-container {
+        color: #757575;
+        margin-left: 12px;
+        display: flex;
+        align-items: center;
+    }
+
+    .clear-icon {
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 50%;
+        transition: background 0.2s;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+    }
+}
+
+.search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    // border-radius: 8px; // Screenshot looks squarer or simple shadow
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    margin-top: 4px;
+    padding: 0;
+    z-index: 1000;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #e5e7eb;
+
+    // Scrollbar styling (thin, grey)
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8;
+    }
+
+    .dropdown-item {
+        display: flex;
+        flex-direction: column;
+        padding: 12px 24px;
+        cursor: pointer;
+        transition: background-color 0.1s;
+        border-bottom: 1px solid #f0f0f0; // Separator line
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:hover {
+            background-color: #f9fafb;
+        }
+
+        .item-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            .item-category {
+                font-family: 'Open Sans', sans-serif;
+                font-size: 0.75rem; // ~12px
+                color: #6b7280; // Gray text
+                text-transform: uppercase; // Optional, image looks normal case but "Producto"
+                letter-spacing: 0.02em;
+            }
+
+            .item-title {
+                font-family: 'CIB Sans', sans-serif;
+                font-weight: 600;
+                font-size: 0.95rem; // ~15px
+                color: #111827; // Darker black
+            }
+        }
+    }
+}
+
+.item-details {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

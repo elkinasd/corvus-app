@@ -1,0 +1,194 @@
+<div [formGroup]="productForm" class="detail-container mt-1">
+    <mat-tab-group>
+        <!-- Tab 1: Información General -->
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Información General
+                @if (generalInfo.invalid) {
+                <mat-icon class="tab-error-icon ms-2" color="warn">error</mat-icon>
+                } @else {
+                <mat-icon class="tab-success-icon ms-2" color="primary">check_circle</mat-icon>
+                }
+            </ng-template>
+            <div class="tab-content" formGroupName="generalInfo">
+                <div class="header">
+                    <h2 class="mb-2">Información General</h2>
+                    <div class="mb-2">
+                        <strong>Estado del producto:</strong>
+                    </div>
+                    <p class="mb-3 text-muted">¿En cual estado se encuentra el producto?</p>
+                    <div class="mb-3">
+                        <mat-radio-group formControlName="status" class="status-radio-group">
+                            @for (option of statusOptions; track option.value) {
+                            <mat-radio-button [value]="option.value" class="custom-radio">
+                                <div class="radio-label-content">
+                                    <span class="radio-title">{{ option.label }}</span>
+                                    <p class="radio-description">{{ option.description }}</p>
+                                </div>
+                            </mat-radio-button>
+                            }
+                        </mat-radio-group>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12" style="margin-bottom: 2rem;">
+                            <div class="mt-4">
+                                <p class="mb-2"><strong>Nombre del producto:</strong></p>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <mat-form-field class="full-width">
+                                        <mat-label>Producer Team</mat-label>
+                                        <input type="text" placeholder="Selecciona un equipo" matInput
+                                            formControlName="producerTeam" [matAutocomplete]="auto">
+                                        <mat-autocomplete #auto="matAutocomplete">
+                                            @for (team of filteredTeams | async; track team.value) {
+                                            <mat-option [value]="team.value">{{team.label}}</mat-option>
+                                            }
+                                        </mat-autocomplete>
+                                        <mat-error>Este campo es requerido</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-6">
+                                    <mat-form-field class="full-width">
+                                        <mat-label>Nombre en español</mat-label>
+                                        <input matInput formControlName="spanishName" [errorStateMatcher]="matcher">
+                                        @if (spanishName.hasError('required')) {
+                                        <mat-error>Este campo es requerido</mat-error>
+                                        }
+                                        @if (spanishName.hasError('pattern')) {
+                                        <mat-error>Caracteres especiales no permitidos</mat-error>
+                                        }
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="body mt-4">
+                    <div class="mb-4">
+                        <p class="mb-2"><strong>Entradilla</strong></p>
+                        <mat-form-field class="full-width">
+                            <mat-label>Escribe un resumen breve</mat-label>
+                            <textarea matInput formControlName="summary" rows="3"></textarea>
+                            <mat-error>Este campo es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-4">
+                        <p class="mb-2"><strong>Descripción</strong></p>
+                        <mat-form-field class="full-width">
+                            <mat-label>Escribe una descripción detallada</mat-label>
+                            <textarea matInput formControlName="description" rows="5"></textarea>
+                            <mat-error>Este campo es requerido</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <p>
+                        <strong>Agrega al menos dos beneficios destacados de este producto.</strong>
+                    </p>
+                    <div class="row" formArrayName="benefits">
+                        @for (control of benefits.controls; track $index) {
+                        <div class="col-12">
+                            <mat-form-field class="full-width mt-2">
+                                <mat-label>Beneficio {{ $index + 1 }} {{ $index > 1 ? '(Opcional)' : '' }}</mat-label>
+                                <textarea matInput [formControlName]="$index" rows="3"></textarea>
+                                <mat-hint align="end">{{control.value?.length || 0}}/150</mat-hint>
+                                @if ($index < 2 && control.hasError('required')) { <mat-error>Este campo es
+                                    requerido</mat-error>
+                                    }
+                            </mat-form-field>
+                        </div>
+                        }
+                    </div>
+                    <div class="d-flex justify-content-end mt-3">
+                        <button [ngClass]="{'disabled-button': benefits.length >= 6}" mat-stroked-button
+                            (click)="addBenefit()" [disabled]="benefits.length >= 6"
+                            [matTooltip]="benefits.length >= 6 ? 'El máximo permitido es de 6 beneficios' : ''">
+                            Agregar nuevo Beneficio
+                        </button>
+                    </div>
+                    <div class="mt-4">
+                        <p class="mb-2"><strong>Casos de uso (opcional)</strong></p>
+                        <mat-form-field class="full-width">
+                            <mat-label>Describe los casos de uso...</mat-label>
+                            <textarea matInput formControlName="useCases" rows="3"></textarea>
+                            <mat-hint>Ingresa la información, requisitos técnicos o condiciones que debe tener en cuenta
+                                el consumidor y el usuario sobre el uso del producto y sus funcionalidades.</mat-hint>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Detalle del producto y sus funcionalidades
+                @if (functionalDetail.invalid) {
+                <mat-icon class="tab-error-icon ms-2" color="warn">error</mat-icon>
+                } @else {
+                <mat-icon class="tab-success-icon ms-2" color="primary">check_circle</mat-icon>
+                }
+            </ng-template>
+            <div class="tab-content" formGroupName="functionalDetail">
+                <div class="header mb-4">
+                    <h2 class="mb-2">Detalle del producto y sus funcionalidades</h2>
+                    <div class="mt-4">
+                        <h3 class="mb-2">¿Cómo funciona?</h3>
+                        <p class="text-muted">Describe cuáles son los pasos o etapas que representa funcionalmente cada
+                            una de las APIs de este producto. Así sea un flujo continuo o no.
+                        </p>
+                        <div class="row" formArrayName="stages">
+                            @for (control of stages.controls; track $index) {
+                            <div class="col-4">
+                                <mat-form-field class="full-width mt-3">
+                                    <mat-label>Etapa o paso {{ $index + 1 }} {{ $index > 1 ? '(opcional)' : ''
+                                        }}</mat-label>
+                                    <textarea matInput [formControlName]="$index" rows="3"></textarea>
+                                    @if ($index < 2 && control.hasError('required')) { <mat-error>Campo
+                                        obligatorio</mat-error>
+                                        }
+                                </mat-form-field>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="mb-2">Condiciones de uso (Opcional)</h3>
+                        <mat-form-field class="full-width">
+                            <mat-label>Ingresa la información, requisitos técnicos o condiciones...</mat-label>
+                            <textarea matInput formControlName="usageConditions" rows="3"></textarea>
+                            <mat-hint align="end">{{functionalDetail.get('usageConditions')?.value?.length ||
+                                0}}/800</mat-hint>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Información complementaria">
+            <div class="tab-content" formGroupName="complementaryInfo">
+                <div class="header">
+                    <h2 class="mb-2">Información complementaria</h2>
+                    <div class="row" formArrayName="additionalDocs">
+                        @for (control of additionalDocs.controls; track $index) {
+                        <div class="col-4">
+                            <mat-form-field class="full-width mt-3">
+                                <mat-label>Documento adicional {{ $index + 1 }} {{ $index > 1 ? '(opcional)' : ''
+                                    }}</mat-label>
+                                <textarea matInput [formControlName]="$index" rows="3"></textarea>
+                                @if ($index < 2 && control.hasError('required')) { <mat-error>Campo
+                                    obligatorio</mat-error>
+                                    }
+                            </mat-form-field>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+    <div class="detail-footer">
+        <button mat-stroked-button>Cancelar</button>
+        <button [ngClass]="{'disabled-button': productForm.invalid}" mat-flat-button color="primary"
+            [disabled]="productForm.invalid"
+            [matTooltip]="productForm.invalid ? 'Completa todos los campos obligatorios para guardar' : ''">
+            Guardar cambios
+        </button>
+    </div>
+</div>
